@@ -2,26 +2,21 @@
  * 
  */
 
-var app = angular.module('Promo', ['angular-timeline','uiGmapgoogle-maps','ngRoute']);
+var app = angular.module('Promo', ['angular-timeline','ngRoute']);
 
-app.config(function(uiGmapGoogleMapApiProvider) {
+/*app.config(function(uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
         key: 'AIzaSyDXnJvicDbYXPwfbatohOiwQdTtvBimT2w',
         v: '3.20', //defaults to latest 3.X anyhow
         libraries: 'weather,geometry,visualization'
     });
-})
+});*/
 
 
 
 
-app.controller('AppController', ['$scope','uiGmapGoogleMapApi','$rootScope','$document','$timeout', function AppController($rootScope, $document, $timeout, $scope, uiGmapGoogleMapApi) {
+app.controller('AppController', ['$scope','$rootScope','$document','$timeout', function AppController($rootScope, $document, $timeout, $scope) {
 	
-	$scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
-	
-	uiGmapGoogleMapApi.then(function(maps) {
-
-    });
 	
 	
 	
