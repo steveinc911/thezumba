@@ -8,6 +8,30 @@ hgroup{
 	display:none;
 }
 
+#main b{
+	font-family:Muli;
+	color:#262262;
+	text-align:center;
+	display:block;
+	margin-top:1%;
+	font-size:2vw;
+}
+
+.social-icon{
+	width:3.7vw;
+}
+
+#social-links{
+	position:absolute;
+	top:5px;
+	right:5px;
+}
+
+#social-links b{
+	display:none;
+}
+
+
 #logo-img {
     width: 28%;
     display: block;
@@ -32,25 +56,12 @@ hgroup{
     bottom: -15%;
 }
 
-@media screen and (max-width: 1024px){
-	#logo-img {
-		width: 38%;
-		margin-top: 5%;
-	}
 
-	#tagline-img {
-		width: 39%;
-		margin-top: 3%;
-	}
-
-	#people-dancing-img {
-		width: 60%;
-		left: 20%;
-		bottom: -15%;
-	}
-}
 
 @media screen and (max-width: 1024px){
+	.social-icon{
+		width:5vw;
+	}
 	#logo-img {
 		width: 38%;
 		margin-top: 5%;
@@ -69,6 +80,13 @@ hgroup{
 }
 
 @media screen and (max-width: 768px){
+	#main b{
+		font-size:1em;
+	}
+	.social-icon{
+		width:10vw;
+	}
+	
 	#logo-img {
 		width: 48%;
 		margin-top: 5%;

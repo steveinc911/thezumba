@@ -1,27 +1,136 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  ng-app="Promo" ng-controller="AppController">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="The biggest Zumba Festival in Dubai. Join the party at Zabeel Park, Dubai. For all ages, no experience needed. Fun for friends and family." />
+<meta name="keywords" content="zumba,party,friends,family,fitness,dubai,uae,emirates,arab,work out,dance,festival,zabeel,park" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Zumba Festival DXB 2016 - Zabeel Park, Dubai" />
+<meta property="og:description" content="The biggest Zumba Festival in Dubai. Join the party at Zabeel Park, Dubai. For all ages, no experience needed. Fun for friends and family." />
+<meta property="og:url" content="http://www.zumbafestdxb.com/" />
+<meta property="og:site_name" content="Zumba Festival DXB 2016" />
+<meta property="og:image" content="images/landingpage/logo.png" />
+<link href="/favicon.png" rel="shortcut icon" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="css/reset.css">
-<link rel="stylesheet" type="text/css" href="css/landingpage.css">
+<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="custom_modules/fontastic/styles.css">
+<link rel="stylesheet" type="text/css" href="node_modules/angular-timeline/dist/angular-timeline.css">
+<link rel="stylesheet" type="text/css" href="node_modules/angular-timeline/dist/angular-timeline-bootstrap.css">
+	
+
+<!-- BOC: required for less -->
+<link rel="stylesheet/less" type="text/css" href="css/style.less">	
+<script type="text/javascript">
+	less = { env: 'development' };
+</script>
+<script src="js/less.min.js"></script>
+<!-- EOC: required for less -->
+	
+<script src="node_modules/angular/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+<script src="node_modules/angular-timeline/dist/angular-timeline.js"></script>	
+<script src="node_modules/angular-google-maps/dist/angular-google-maps.js"></script>
+<script src="node_modules/lodash/"></script>
 <script src="node_modules/html5shiv/dist/html5shiv.js"></script>
-<title>The Zumba</title>
+<script src="js/general.js"></script>	
+<title>Zumba Festival DXB 2016 - Zabeel Park, Dubai</title>
 </head>
-<body>
-
-<header>
-	<hgroup>
-	<h1>Zumba Festival</h1>
-	<h2>Dubai(DXB) 2015</h2>
-	</hgroup>
-	<a href="#" id="logo">
-		<img src="images/landingpage/logo.png" id="logo-img" />
-	</a>
-	<img src="images/landingpage/tagline.png" id="tagline-img" />
-	<img src="images/landingpage/dancingpeople.png" id="people-dancing-img" />
-</header>
-
+<body id="body">
+<div class="container-fill">
+	<header ng-style="resizeHeight(9.6,0,0,0)" resize>
+		<div class="container">
+			<a href="#" id="logo" alt="Zumba Festival DXB 2016">
+				<b>Zumba Festival DXB 2016</b>
+				<img src="images/logo.png" id="logo-img" />
+			</a>
+			<nav>
+				<a href="#" id="sponsors-link" class="sz2"><i class="icon-handshake"></i><b>Sponsors</b></a>
+				<a href="#" id="map-link" class="sz1"><i class="icon-location"></i><b>Map</b></a>
+				<a href="#" id="media-link" class="sz2"><i class="icon-arrow-circle-right-line"></i><b>Media</b></a>
+				<a href="#" id="schedule-link" class="sz1"><i class="icon-clock"></i><b>Schedule</b></a>
+				<a href="#" id="about-link" class="sz1"><i class="icon-question"></i><b>About</b></a>
+				
+				
+				
+				
+				
+			</nav>
+		</div>
+	</header>
+	<section id="banner"  ng-style="resizeHeight(31.5,9.6,0,0)" resize>
+		
+	</section>
+	<section id="event-details-overlay"  ng-style="resizeHeight(31.5,9.6,0,1)" resize>
+		<div class="caption">
+			BE A PART OF THE BIGGEST ZUMBA FESTIVAL IN DUBAI
+		</div>
+		<img src="images/tagline.png" class="tagline" alt="Dance! like never before" />
+		<div class="details">
+			January 2016
+		</div>
+	</section>
+	</section>
+	<section id="event-other-info">
+		<div class="container">
+			<div class="message col-md-6">
+				ALL AGES! NO EXPERIENCE NEEDED!<br/>FUN FOR FOR FRIENDS AND FAMILY
+			</div>
+			<div class="presented-by col-md-6">
+				<a href="#"  class="event-company-logo"><img src="images/202events.png" /></a>
+			</div>
+		</div>
+	</section>
+	<article id="schedule" class="section">
+		<div class="container">
+			<h1>Schedule</h1>
+			<div class="clearfix"></div>
+			
+			<div ui-view></div>
+			
+		</div>
+	</article>
+	<article id="about" class="section">
+		<div class="container">
+			<h1>About</h1>
+			<div class="clearfix"></div>
+			<div class="row">
+				<p class="col-md-7">
+					Staying fit and healthy has never been this
+exciting, with Zumba we promise you wont
+have to frown. You can smile as you shed the
+pounds, detox, de-stress and transform into
+a a healthier fitter you. The Zumba festival
+is the 202›s very own concoction of music,
+dancing and entertainment with loads of activities and tons of prizes to be won.
+The Zumba Festival is the first of its kind in
+Dubai where you can move to the beats of
+Latin, Hip Hop, Salsa and Mambo following
+instructions from 8 of the best Zumba professionals in the Region. In addition to the
+Zumba routines we have also incorporated
+a variety of interesting activities like water
+balloon and color fights . We also have an
+array of unique and different artists to entertain the crowd. The event is going to be a
+kaleidoscope of colors, dance and fun.
+				</p>
+				<div class="col-md-5">
+					<img src="images/aboutpic.jpg" class="img-responsive" />
+				</div>
+			</div>
+			
+		</div>
+	</article>
+	<article id="media" class="section">
+	</article>
+	<section id="map" class="section">
+		<ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+	</section>
+	<section id="sponsors" class="section">
+	</section>
+	<footer>
+	</footer>
+</div>
 </body>
 </html>
