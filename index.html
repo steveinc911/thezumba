@@ -19,6 +19,7 @@
 <link rel="stylesheet" type="text/css" href="custom_modules/fontastic/styles.css">
 <link rel="stylesheet" type="text/css" href="node_modules/angular-timeline/dist/angular-timeline.css">
 <link rel="stylesheet" type="text/css" href="node_modules/angular-timeline/dist/angular-timeline-bootstrap.css">
+<link rel="stylesheet" type="text/css" href="node_modules/angular-timeline/dist/angular-timeline-animations.css">
 	
 
 <!-- BOC: required for less -->
@@ -31,8 +32,13 @@
 	
 <script src="node_modules/angular/angular.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+<script src="node_modules/angular-sanitize/angular-sanitize.js"></script>
+<script src="node_modules/ui-router/angular-ui-router.js"></script>
+<script src="node_modules/angular-scroll-animate/dist/angular-scroll-animate.js"></script>
 <script src="node_modules/angular-timeline/dist/angular-timeline.js"></script>	
 <script src="node_modules/angular-google-maps/dist/angular-google-maps.js"></script>
+<script src="custom_modules/lodash/lodash.js"></script>
+<script src="node_modules/angular-simple-logger/dist/index.js"></script>
 <script src="node_modules/html5shiv/dist/html5shiv.js"></script>
 <script src="js/general.js"></script>	
 <title>Zumba Festival DXB 2016 - Zabeel Park, Dubai</title>
@@ -71,7 +77,6 @@
 			January 2016
 		</div>
 	</section>
-	</section>
 	<section id="event-other-info">
 		<div class="container">
 			<div class="message col-md-6">
@@ -84,11 +89,7 @@
 	</section>
 	<article id="schedule" class="section">
 		<div class="container">
-			<h1>Schedule</h1>
-			<div class="clearfix"></div>
-			
 			<div ui-view></div>
-			
 		</div>
 	</article>
 	<article id="about" class="section">

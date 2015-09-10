@@ -2,22 +2,37 @@
  * 
  */
 
-var app = angular.module('Promo', ['angular-timeline','ngRoute']);
+var app = angular.module('Promo', ['angular-timeline','uiGmapgoogle-maps','ngRoute','nemLogging','angular-scroll-animate','ui.router']);
 
-/*app.config(function(uiGmapGoogleMapApiProvider) {
+app.config(['uiGmapGoogleMapApiProvider', function(uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
         key: 'AIzaSyDXnJvicDbYXPwfbatohOiwQdTtvBimT2w',
         v: '3.20', //defaults to latest 3.X anyhow
-        libraries: 'weather,geometry,visualization'
+        libraries: 'weather,geometry,visualization',
+		china:true
     });
-});*/
+}]);
+
+app.config(function($stateProvider) {
+  $stateProvider.state('user', {
+    url:         '',
+    controller: 'AppController',
+    templateUrl: 'example.html'
+  });
+});
 
 
 
 
-app.controller('AppController', ['$scope','$rootScope','$document','$timeout', function AppController($rootScope, $document, $timeout, $scope) {
+
+
+app.controller('AppController', ['$scope','$rootScope','$document','$timeout','uiGmapGoogleMapApi', function AppController($rootScope, $document, $timeout, $scope, uiGmapGoogleMapApi) {
 	
+	$scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
 	
+	uiGmapGoogleMapApi.then(function(maps) {
+		console.log("map lodded");
+    });
 	
 	
 	
@@ -41,7 +56,6 @@ app.directive('resize', function ($window) {
 
             scope.resizeHeight = function (percentH,marginTop,marginBottom,mode) {
                 scope.$eval(attr.notifier);
-				console.log(percentH);
 				if(marginTop>0){
 					scope.mTop=(newValue.w*marginTop/100);
 				}
