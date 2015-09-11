@@ -5,11 +5,12 @@
 var app = angular.module('Promo', ['angular-timeline','uiGmapgoogle-maps','ngRoute','nemLogging','angular-scroll-animate','ui.router']);
 
 app.config(['uiGmapGoogleMapApiProvider', function(uiGmapGoogleMapApiProvider) {
+	
+	
     uiGmapGoogleMapApiProvider.configure({
         key: 'AIzaSyDXnJvicDbYXPwfbatohOiwQdTtvBimT2w',
         v: '3.20', //defaults to latest 3.X anyhow
         libraries: 'weather,geometry,visualization',
-		china:true
     });
 }]);
 
@@ -28,11 +29,19 @@ app.config(function($stateProvider) {
 
 app.controller('AppController', ['$scope','$rootScope','$document','$timeout','uiGmapGoogleMapApi', function AppController($rootScope, $document, $timeout, $scope, uiGmapGoogleMapApi) {
 	
-	$scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
 	
-	uiGmapGoogleMapApi.then(function(maps) {
-		console.log("map lodded");
-    });
+	
+	
+	
+	
+	var areaLat      = 44.2126995,
+      areaLng      = -100.2471641,
+      areaZoom     = 3;
+
+  uiGmapGoogleMapApi.then(function(maps) {
+    $scope.map     = { center: { latitude: areaLat, longitude: areaLng }, zoom: areaZoom };
+    $scope.options = { scrollwheel: false };
+  });
 	
 	
 	
@@ -82,6 +91,8 @@ app.directive('resize', function ($window) {
 			
 
         }, true);
+		
+		
 
         angular.element(w).bind('resize', function () {
             scope.$apply();
