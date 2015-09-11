@@ -145,15 +145,26 @@ header{
 	}
 }
 
+.edge1{
+	width:100%;
+	margin-top:-45px;
+
+}
+
 #event-other-info{
 	position:relative;
 	/*margin-top:41.1vw; /*9.6+31.5*/
-	border-top:@border2;
 	z-index:10;
-	background:#fff;
-	height:100px;
+	background-color:#92278f;
+	
+	
+	.content{
+		
+		margin-top:-10px;
+	}
+	
 	.message{
-		color:#f1592a;
+		color:#fff;
 		font-size:20px;
 		font-family:Oswald;
 		font-weight:400;
@@ -163,7 +174,8 @@ header{
 		.event-company-logo{
 			width:15%;
 			display:inline-block;
-			margin-top:-30px;
+			margin-top:-50px;
+			margin-bottom:10px;
 			img{
 				width:100%;
 			}
@@ -179,6 +191,12 @@ header{
 @color1:#d91b5c;
 .section{
 	border-top:@border1;
+	.edge1{
+		margin-top:-160px;
+	}
+	.edge1.flip{
+		margin-top:-90px;
+	}
 	h1{
 		margin-top:10px;
 		text-align:center;
@@ -217,7 +235,16 @@ header{
 
 #about{
 	
-	
+	h1{
+		margin-top:-50px;
+	}
 }
 
 .angular-google-map-container { height: 400px; }
+
+footer{
+	height:100px;
+	background:#4e4a41 url("../images/footer_bg.png?ca8a218") repeat-x scroll 0 0;
+	position:relative;
+	z-index:3;
+}
