@@ -176,16 +176,23 @@ header{
 	clear:both;
 }
 
+@color1:#d91b5c;
 .section{
 	border-top:@border1;
 	h1{
 		margin-top:10px;
 		text-align:center;
 		margin-bottom:30px;
-		color:#d91b5c;
+		color:#fff;
 		font-family:LeckerliOneRegular;
 		font-weight:500;
 		font-size:50px;
+	    text-shadow:
+		   3px 3px 0 @color1,
+		 -1px -1px 0 @color1,  
+		  1px -1px 0 @color1,
+		  -1px 1px 0 @color1,
+		   1px 1px 0 @color1;
 	}
 	position:relative;
 	z-index:3;
