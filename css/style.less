@@ -1,4 +1,5 @@
-@border1: 2px solid #c0c0c0;
+@border1: 1px solid #c0c0c0;
+@border2: 1px solid #f1592a;
 @font1: Century Gothic;
 
 body
@@ -15,20 +16,20 @@ header{
 	width:100%;
 	min-width:1024px;
 	
-	-webkit-box-shadow: -1px 9px 21px -11px rgba(0,0,0,0.75);
-	-moz-box-shadow: -1px 9px 21px -11px rgba(0,0,0,0.75);
-	box-shadow: -1px 9px 21px -11px rgba(0,0,0,0.75);
+	-webkit-box-shadow: -1px 9px 5px -11px rgba(0,0,0,0.75);
+	-moz-box-shadow: -1px 9px 5px -11px rgba(0,0,0,0.75);
+	box-shadow: -1px 9px 5px -11px rgba(0,0,0,0.75);
 	
 	
 	/*height:9.6vw; /* 209/2172 */
-	border-bottom:@border1;
+	border-bottom:@border2;
 	top:0px;
 	z-index:100;
 	nav{
 		float:right;
 		margin-top:1%;
 		width:80%;
-
+		
 		a{
 			text-decoration:none !important;
 			font-size:50px;
@@ -37,6 +38,7 @@ header{
 			text-align:center;
 			float:right;
 			margin-left:50px;
+			color:#f1592a;
 			b{
 				display:block;
 				font-size:16px;
@@ -70,8 +72,9 @@ header{
 		
 		#sponsors-link{
 			margin-top:-2px;
+			font-size:60px;
 			b{
-				margin-top:-7px;
+				margin-top:-22px;
 			}
 		}
 	}
@@ -145,15 +148,15 @@ header{
 #event-other-info{
 	position:relative;
 	/*margin-top:41.1vw; /*9.6+31.5*/
-	border-top:@border1;
+	border-top:@border2;
 	z-index:10;
 	background:#fff;
 	height:100px;
 	.message{
 		color:#f1592a;
 		font-size:20px;
-		font-family:century gothic;
-		font-weight:600;
+		font-family:Oswald;
+		font-weight:400;
 	}
 	.presented-by{
 		text-align:right;
@@ -177,11 +180,12 @@ header{
 	border-top:@border1;
 	h1{
 		margin-top:10px;
-		float:left;
-		margin-bottom:10px;
+		text-align:center;
+		margin-bottom:30px;
 		color:#d91b5c;
-		font-family:@font1;
-		font-weight:600;
+		font-family:LeckerliOneRegular;
+		font-weight:500;
+		font-size:50px;
 	}
 	position:relative;
 	z-index:3;
