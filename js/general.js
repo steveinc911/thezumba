@@ -2,9 +2,23 @@
  * 
  */
 
-var app = angular.module('Promo', ['angular-timeline','uiGmapgoogle-maps','ngRoute','nemLogging','angular-scroll-animate','ui.router']);
+var map;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('mapcontainer'), {
+    center: {lat: 25.235125, lng: 55.297963},
+    zoom: 16
+  });
+	
+  var marker = new google.maps.Marker({
+    position: {lat: 25.235125, lng: 55.297963},
+    map: map,
+    title: 'Zumba Festival 2016, Zabeel Park'
+  });
+}
 
-app.config(['uiGmapGoogleMapApiProvider', function(uiGmapGoogleMapApiProvider) {
+var app = angular.module('Promo', ['angular-timeline','ngRoute','nemLogging','angular-scroll-animate','ui.router']);
+
+/*app.config(['uiGmapGoogleMapApiProvider', function(uiGmapGoogleMapApiProvider) {
 	
 	
     uiGmapGoogleMapApiProvider.configure({
@@ -12,7 +26,7 @@ app.config(['uiGmapGoogleMapApiProvider', function(uiGmapGoogleMapApiProvider) {
         v: '3.20', //defaults to latest 3.X anyhow
         libraries: 'weather,geometry,visualization',
     });
-}]);
+}]);*/
 
 app.config(function($stateProvider) {
   $stateProvider.state('user', {
@@ -27,21 +41,21 @@ app.config(function($stateProvider) {
 
 
 
-app.controller('AppController', ['$scope','$rootScope','$document','$timeout','uiGmapGoogleMapApi', function AppController($rootScope, $document, $timeout, $scope, uiGmapGoogleMapApi) {
+app.controller('AppController', ['$scope','$rootScope','$document','$timeout', function AppController($rootScope, $document, $timeout, $scope) {
 	
 	
 	
 	
 	
 	
-	var areaLat      = 44.2126995,
+	/*var areaLat      = 44.2126995,
       areaLng      = -100.2471641,
       areaZoom     = 3;
 
   uiGmapGoogleMapApi.then(function(maps) {
     $scope.map     = { center: { latitude: areaLat, longitude: areaLng }, zoom: areaZoom };
     $scope.options = { scrollwheel: false };
-  });
+  });*/
 	
 	
 	

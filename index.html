@@ -38,9 +38,10 @@
 <script src="node_modules/angular-scroll-animate/dist/angular-scroll-animate.js"></script>
 <script src="node_modules/angular-timeline/dist/angular-timeline.js"></script>	
 <script src="node_modules/angular-simple-logger/dist/index.js"></script>
-<script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXnJvicDbYXPwfbatohOiwQdTtvBimT2w&callback=initMap&sensor=false"></script>
 <script src="node_modules/angular-google-maps/dist/angular-google-maps.js"></script>
 <script src="node_modules/html5shiv/dist/html5shiv.js"></script>
+
 <script src="js/general.js"></script>	
 <title>Zumba Festival DXB 2016 - Zabeel Park, Dubai</title>
 </head>
@@ -131,10 +132,10 @@ kaleidoscope of colors, dance and fun.
 	<article id="media" class="section">
 	</article>
 	<style>
-		.angular-google-map-container { width:100%; height:100%; }
+		.google-map-container { width:100%; height:400px; }
 	</style>
 	<section id="map" class="section">
-		<ui-gmap-google-map center='map.center' zoom='map.zoom' control="myGoogleMap"></ui-gmap-google-map>
+		<div class="google-map-container" id="mapcontainer"></div>
 	</section>
 	<section id="sponsors" class="section">
 	</section>
