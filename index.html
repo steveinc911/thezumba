@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  ng-app="Promo" ng-controller="AppController">
+<html lang="en"  ng-app="Promo" ng-controller="AppController as ctrl">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,6 +21,9 @@
 <link rel="stylesheet" type="text/css" href="node_modules/angular-timeline/dist/angular-timeline-bootstrap.css">
 <link rel="stylesheet" type="text/css" href="node_modules/angular-timeline/dist/angular-timeline-animations.css">
 	
+<link rel="stylesheet" type="text/css" href="bower_components/ngGallery/src/css/ngGallery.css">
+<link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+	
 
 <!-- BOC: required for less -->
 <link rel="stylesheet/less" type="text/css" href="css/style.less">	
@@ -32,6 +35,7 @@
 
 <script src="custom_modules/lodash/lodash.js"></script>
 <script src="node_modules/angular/angular.js"></script>
+<script type="text/javascript" src="bower_components/ngGallery/src/js/ngGallery.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
 <script src="node_modules/angular-sanitize/angular-sanitize.js"></script>
 <script src="node_modules/ui-router/angular-ui-router.js"></script>
@@ -41,6 +45,7 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXnJvicDbYXPwfbatohOiwQdTtvBimT2w&callback=initMap&sensor=false"></script>
 <script src="node_modules/angular-google-maps/dist/angular-google-maps.js"></script>
 <script src="node_modules/html5shiv/dist/html5shiv.js"></script>
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
 
 <script src="js/general.js"></script>	
 <title>Zumba Festival DXB 2016 - Zabeel Park, Dubai</title>
@@ -141,7 +146,11 @@ kaleidoscope of colors, dance and fun.
 		</div>
 	</article>
 	<article id="media" class="section">
-		<h1>Media</h1>
+		<div class="container">
+			<h1>Media</h1>
+			<ng-gallery images="ctrl.images" thumbs-num="11">
+			</ng-gallery>
+		</div>
 	</article>
 	<style>
 		.google-map-container { width:100%; }
@@ -163,6 +172,13 @@ kaleidoscope of colors, dance and fun.
 	</section>
 	<section id="sponsors" class="section">
 		<h1>Sponsors &amp; Partners</h1>
+		<div class="container">
+			<ul class="row">
+				<li class="col-md-4"><b>Kelloggs</b><img src="images/sponsors/kellogs.png" /></li>
+				<li class="col-md-4"><b>Tropicana</b><img src="images/sponsors/tropicana.png" /></li>
+				<li class="col-md-4"><b>Ultimate Nutrition</b><img src="images/sponsors/ultimatenutrition.png" /></li>
+			</ul>
+		</div>
 	</section>
 	<footer>
 		<img src="images/powderedge_footer.png" class="edge1" />

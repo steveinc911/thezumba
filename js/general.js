@@ -2,27 +2,30 @@
  * 
  */
 
-var map;
+var gmap;
+var gmarker;
 function initMap() {
-  map = new google.maps.Map(document.getElementById('mapcontainer'), {
+  gmap = new google.maps.Map(document.getElementById('mapcontainer'), {
     center: {lat: 25.235125, lng: 55.297963},
 	scrollwheel: false,
     zoom: 16,
 	draggable: true
   });
 	
-  var marker = new google.maps.Marker({
+  gmarker = new google.maps.Marker({
     position: {lat: 25.235125, lng: 55.297963},
-    map: map,
+    map: gmap,
     title: 'Zumba Festival 2016, Zabeel Park'
   });
 }
 
 function showVenue(){
-	map.setCenter({lat: 25.235125, lng: 55.297963});
+	gmap.setCenter({lat: 25.235125, lng: 55.297963});
+	gmarker.setAnimation(google.maps.Animation.DROP);
+	//setTimeout('gmarker.setAnimation(google.maps.Animation.BOUNCE)',2000);
 };
 
-var app = angular.module('Promo', ['angular-timeline','ngRoute','nemLogging','angular-scroll-animate','ui.router']);
+var app = angular.module('Promo', ['angular-timeline','ngRoute','nemLogging','angular-scroll-animate','ui.router','jkuri.gallery']);
 
 /*app.config(['uiGmapGoogleMapApiProvider', function(uiGmapGoogleMapApiProvider) {
 	
@@ -49,8 +52,27 @@ app.config(function($stateProvider) {
 
 app.controller('AppController', ['$scope','$rootScope','$document','$timeout', function AppController($rootScope, $document, $timeout, $scope) {
 	
+	var self = this;
+ 	
+    self.images = [
+        {thumb: 'images/thumbs/1.jpg', img: 'images/1.jpg', description: 'Image 1'},
+        {thumb: 'images/thumbs/2.jpg', img: 'images/2.jpg', description: 'Image 2'},
+        {thumb: 'images/thumbs/3.jpg', img: 'images/3.jpg', description: 'Image 3'},
+        {thumb: 'images/thumbs/4.jpg', img: 'images/4.jpg', description: 'Image 4'},
+		{thumb: 'images/thumbs/5.jpg', img: 'images/5.jpg', description: 'Image 5'},
+        {thumb: 'images/thumbs/6.jpg', img: 'images/6.jpg', description: 'Image 6'},
+        {thumb: 'images/thumbs/7.jpg', img: 'images/7.jpg', description: 'Image 7'},
+        {thumb: 'images/thumbs/8.jpg', img: 'images/8.jpg', description: 'Image 8'},
+		{thumb: 'images/thumbs/9.jpg', img: 'images/9.jpg', description: 'Image 9'},
+        {thumb: 'images/thumbs/10.jpg', img: 'images/10.jpg', description: 'Image 10'},
+        {thumb: 'images/thumbs/11.jpg', img: 'images/11.jpg', description: 'Image 11'}
+    ];
 	
+	$(".ng-isolate-scope .ng-overlay").appendTo("body");
+	$(".ng-isolate-scope .ng-overlay").remove();
 	
+	$(".ng-isolate-scope .ng-gallery-content").appendTo("body");
+	$(".ng-isolate-scope .ng-gallery-content").remove();
 	
 	
 	

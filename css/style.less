@@ -9,7 +9,6 @@ body
 	width:100%;
 	font-size:16px;
 }
-
 header{
 	background-image:url('../images/bg.jpg');
 	background-size:cover;
@@ -25,7 +24,7 @@ header{
 	/*height:9.6vw; /* 209/2172 */
 	border-bottom:@border2;
 	top:0px;
-	z-index:100;
+	z-index:20;
 	nav{
 		float:right;
 		margin-top:1%;
@@ -293,6 +292,9 @@ header{
 			z-index:11;
 			.btn{
 				color:#101010;
+				margin-left:auto;
+				margin-right:auto;
+				margin-top:10px;
 			}
 		}
 		
@@ -307,6 +309,20 @@ header{
 
 #media{
 	background:#4e4a41 url("../images/footer_bg.png?ca8a218") repeat-x scroll 0 0;
+	
+}
+
+#sponsors{
+	li{
+		display:inline-block;
+		text-align:center;
+	}
+	img{
+		width:70%;
+	}
+	b{
+		display:none;
+	} 
 }
 
 footer{
