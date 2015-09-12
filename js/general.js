@@ -6,7 +6,9 @@ var map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('mapcontainer'), {
     center: {lat: 25.235125, lng: 55.297963},
-    zoom: 16
+	scrollwheel: false,
+    zoom: 16,
+	draggable: true
   });
 	
   var marker = new google.maps.Marker({
@@ -15,6 +17,10 @@ function initMap() {
     title: 'Zumba Festival 2016, Zabeel Park'
   });
 }
+
+function showVenue(){
+	map.setCenter({lat: 25.235125, lng: 55.297963});
+};
 
 var app = angular.module('Promo', ['angular-timeline','ngRoute','nemLogging','angular-scroll-animate','ui.router']);
 

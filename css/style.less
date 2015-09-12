@@ -11,7 +11,7 @@ body
 }
 
 header{
-	background-image:url('../images/header_bg.jpg');
+	background-image:url('../images/bg.jpg');
 	background-size:cover;
 	position:fixed;
 	width:100%;
@@ -169,6 +169,15 @@ header{
 		font-size:20px;
 		font-family:Oswald;
 		font-weight:400;
+		a{
+			b{
+				display:none;
+			}
+			img{
+				width:8%;
+			}
+			margin-right:10px;
+		}
 	}
 	.presented-by{
 		text-align:right;
@@ -222,7 +231,7 @@ header{
 }
 
 #schedule{
-	background-image: url('../images/landingpage/bg.jpg');
+	background-color:#fcf1ff;
 	background-size:contain;
 	h1{
 		float:none;
@@ -245,8 +254,60 @@ header{
 #map{
 	padding-bottom:0px;
 	padding-top:0px;
+	position:relative;
+	.google-map-container{
+		position:relative;
+		z-index:10;
+	}
+	.google-map-overlay{
+		position:relative;
+		z-index:9px;
+		h1{
+			background-color: rgba(0, 0, 0, 0.7);
+			border:2px solid #fff;
+			border-radius: 10px;
+			display: inline-block;
+			
+			padding: 20px;
+			position:absolute;
+			bottom:20px;
+			right:50px;
+			z-index:11;
+			
+		}
+		
+		.head-container{
+			text-align:center;
+		}
+		
+		.address{
+			background-color: rgba(0, 0, 0, 0.7);
+			border:2px solid #fff;
+			border-radius: 10px;
+			display: inline-block;
+			color:#fff;
+			padding: 50px;
+			position:absolute;
+			top:20px;
+			left:75px;
+			z-index:11;
+			.btn{
+				color:#101010;
+			}
+		}
+		
+		
+		
+		position:absolute;
+		top:0px;
+		left:0px;
+		width:100%;
+	}
 }
 
+#media{
+	background:#4e4a41 url("../images/footer_bg.png?ca8a218") repeat-x scroll 0 0;
+}
 
 footer{
 	height:100px;
