@@ -51,18 +51,6 @@ app.config(function($stateProvider) {
 
 
 app.controller('AppController', ['$scope','$rootScope','$document','$timeout','$window', function AppController($rootScope, $document, $timeout, $scope, $window) {
-
-	//BOC: timeline animations
-	$scope.animateElementIn = function($el) {
-		$el.removeClass('hidden');
-		$el.addClass('bounce-in');
-	};
-
-	$scope.animateElementOut = function($el) {
-		$el.addClass('hidden');
-		$el.removeClass('bounce-in');
-	};
-	//EOC: time animations
 	
 	var self = this;
  	
@@ -86,7 +74,17 @@ app.controller('AppController', ['$scope','$rootScope','$document','$timeout','$
 	$(".ng-isolate-scope .ng-gallery-content").appendTo("body");
 	$(".ng-isolate-scope .ng-gallery-content").remove();
 	
+	//BOC: time animations
+	self.animateElementIn = function($el) {
+		$el.removeClass('hidden');
+		$el.addClass('bounce-in');
+	};
 
+	self.animateElementOut = function($el) {
+		$el.addClass('hidden');
+		$el.removeClass('bounce-in');
+	};
+	//EOC: time animations
 	
 	/*var areaLat      = 44.2126995,
       areaLng      = -100.2471641,
