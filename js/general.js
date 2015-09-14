@@ -25,7 +25,7 @@ function showVenue(){
 	//setTimeout('gmarker.setAnimation(google.maps.Animation.BOUNCE)',2000);
 };
 
-var app = angular.module('Promo', ['angular-timeline','ngRoute','nemLogging','angular-scroll-animate','ui.router','jkuri.gallery']);
+var app = angular.module('Promo', ['angular-timeline','ngRoute','nemLogging','angular-scroll-animate','ui.router','jkuri.gallery','smoothScroll']);
 
 /*app.config(['uiGmapGoogleMapApiProvider', function(uiGmapGoogleMapApiProvider) {
 	
@@ -50,7 +50,19 @@ app.config(function($stateProvider) {
 
 
 
-app.controller('AppController', ['$scope','$rootScope','$document','$timeout', function AppController($rootScope, $document, $timeout, $scope) {
+app.controller('AppController', ['$scope','$rootScope','$document','$timeout','$window', function AppController($rootScope, $document, $timeout, $scope, $window) {
+
+	//BOC: timeline animations
+	$scope.animateElementIn = function($el) {
+		$el.removeClass('hidden');
+		$el.addClass('bounce-in');
+	};
+
+	$scope.animateElementOut = function($el) {
+		$el.addClass('hidden');
+		$el.removeClass('bounce-in');
+	};
+	//EOC: time animations
 	
 	var self = this;
  	
@@ -74,7 +86,7 @@ app.controller('AppController', ['$scope','$rootScope','$document','$timeout', f
 	$(".ng-isolate-scope .ng-gallery-content").appendTo("body");
 	$(".ng-isolate-scope .ng-gallery-content").remove();
 	
-	
+
 	
 	/*var areaLat      = 44.2126995,
       areaLng      = -100.2471641,
@@ -141,3 +153,17 @@ app.directive('resize', function ($window) {
         });
     }
 }); 
+//angular.element(document.querySelectorAll("#schedule")[0])
+app.directive("scroll", function ($window) {
+    return function(scope, element, attrs) {
+		
+        angular.element($window).bind("scroll", function() {
+             if (this.pageYOffset >= 200) {
+                 scope.scrollTopClass = 'show';
+             } else {
+                 scope.scrollTopClass = 'hide';
+             }
+            scope.$apply();
+        });
+    };
+});

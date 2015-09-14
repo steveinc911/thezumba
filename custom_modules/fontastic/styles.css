@@ -44,9 +44,6 @@
 .icon-location:before {
   content: "b";
 }
-.icon-handshake:before {
-  content: "c";
-}
 .icon-arrow-circle-right-line:before {
   content: "d";
 }
@@ -193,4 +190,28 @@
 }
 .icon-black-balloon-string:before {
   content: "Z";
+}
+.icon-book-read-streamline:before {
+  content: "0";
+}
+.icon-map-pin-streamline:before {
+  content: "1";
+}
+.icon-clock-streamline-time:before {
+  content: "2";
+}
+.icon-playback-play:before {
+  content: "3";
+}
+.icon-camera:before {
+  content: "4";
+}
+.icon-handshake:before {
+  content: "c";
+}
+.icon-thumbs-up:before {
+  content: "5";
+}
+.icon-like:before {
+  content: "6";
 }

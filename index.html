@@ -36,10 +36,11 @@
 <script src="custom_modules/lodash/lodash.js"></script>
 <script src="node_modules/angular/angular.js"></script>
 <script type="text/javascript" src="bower_components/ngGallery/src/js/ngGallery.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+<script src="js/angular-route.min.js"></script>
 <script src="node_modules/angular-sanitize/angular-sanitize.js"></script>
 <script src="node_modules/ui-router/angular-ui-router.js"></script>
 <script src="node_modules/angular-scroll-animate/dist/angular-scroll-animate.js"></script>
+<script src="bower_components/ngSmoothScroll/angular-smooth-scroll.js"></script>
 <script src="node_modules/angular-timeline/dist/angular-timeline.js"></script>	
 <script src="node_modules/angular-simple-logger/dist/index.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXnJvicDbYXPwfbatohOiwQdTtvBimT2w&callback=initMap&sensor=false"></script>
@@ -52,18 +53,24 @@
 </head>
 <body id="body">
 <div class="container-fill">
-	<header ng-style="resizeHeight(9.6,0,0,0)" resize>
+	<header id="header" ng-style="resizeHeight(9.6,0,0,0)" resize>
 		<div class="container">
-			<a href="#" id="logo" alt="Zumba Festival DXB 2016">
+			<a href="#home" scroll-to="header" 
+    duration="500" easing="false" id="logo" alt="Zumba Festival DXB 2016">
 				<b>Zumba Festival DXB 2016</b>
 				<img src="images/logo.png" id="logo-img" />
 			</a>
 			<nav>
-				<a href="#" id="sponsors-link" class="sz2"><i class="icon-handshake"></i><b>Sponsors</b></a>
-				<a href="#" id="map-link" class="sz1"><i class="icon-location"></i><b>Venue</b></a>
-				<a href="#" id="media-link" class="sz2"><i class="icon-arrow-circle-right-line"></i><b>Media</b></a>
-				<a href="#" id="schedule-link" class="sz1"><i class="icon-clock"></i><b>Schedule</b></a>
-				<a href="#" id="about-link" class="sz1"><i class="icon-question"></i><b>About</b></a>
+				<a href="#sponsors" scroll-to="sponsors" 
+    duration="500" easing="false" id="sponsors-link" class="sz2"><i class="icon-like"></i><b>Sponsors</b></a>
+				<a href="#venue" scroll-to="map" 
+    duration="500" easing="false" id="map-link" class="sz1"><i class="icon-location"></i><b>Venue</b></a>
+				<a href="#media" alt="not ready" scroll-to="media" 
+    duration="500" easing="false" id="media-link" class="sz2 disabled"><i class="icon-camera"></i><b>Media</b></a>
+				<a href="#about" scroll-to="about" 
+    duration="500" easing="false" id="about-link" class="sz1"><i class="icon-question"></i><b>About</b></a>
+				<a href="#schedule" scroll-to="schedule" 
+    duration="500" easing="false" id="schedule-link" class="sz1"><i class="icon-clock"></i><b>Schedule</b></a>
 				
 				
 				
@@ -72,7 +79,12 @@
 			</nav>
 		</div>
 	</header>
-	<section id="banner"  ng-style="resizeHeight(31.5,9.6,0,0)" resize>
+	<a scroll id="scroll-top-orb" href="#home" ng-class="scrollTopClass" scroll-to="header" 
+    duration="500" easing="false" >
+			<b><i class="fa fa-angle-up"></i>
+<br>TOP</b>
+	</a>
+	<section id="banner"  ng-style="resizeHeight(50,0,0,0)" resize>
 		
 	</section>
 	<section id="event-details-overlay"  ng-style="resizeHeight(31.5,9.6,0,1)" resize>
@@ -93,11 +105,15 @@
 						<b>Facebook</b>
 						<img src="images/facebook_logo.png" />
 					</a>
-					<a href="http://www.facebook.com/ZumbaFestivalDXB2016" class="fb-link">
+					<a href="#" class="fb-link">
 						<b>Twitter</b>
 						<img src="images/twitter_logo.png" />
 					</a>
-					<a href="http://www.facebook.com/ZumbaFestivalDXB2016" class="fb-link">
+					<a href="http://www.google.com/+Zumbafestdxb" class="google-link">
+						<b>Google Plus</b>
+						<img src="images/googleplus.png" />
+					</a>
+					<a href="#" class="fb-link">
 						<b>Instagram</b>
 						<img src="images/instagram_logo.png" />
 					</a>
@@ -108,6 +124,9 @@
 			</div>
 		</div>
 	</section>
+	
+	
+	
 	<article id="schedule" class="section">
 		<img src="images/powderedge_flip.png" class="edge1 flip" />
 		<div class="container">
@@ -145,7 +164,7 @@ kaleidoscope of colors, dance and fun.
 			
 		</div>
 	</article>
-	<article id="media" class="section">
+	<article id="media" class="section" style="display:none;">
 		<div class="container">
 			<h1>Media</h1>
 			<ng-gallery images="ctrl.images" thumbs-num="11">
