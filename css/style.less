@@ -125,6 +125,11 @@ header{
 		margin-right:5%;
 		margin-top:2%;
 		text-shadow: -3px 0px 27px rgba(0, 0, 0, 1);
+		em{
+			font-weight:600;
+			color:#fff;
+			font-size:1.1em;
+		}
 	}
 	
 	.tagline{
@@ -268,6 +273,7 @@ header{
 		-moz-box-shadow: -1px -1px 6px 0px rgba(0,0,0,0.75);
 		box-shadow: -1px -1px 6px 0px rgba(0,0,0,0.75);
 		border:2px solid #fff;
+		background-color:#932890 !important;
 	}
 	
 	.timeline-panel{
@@ -336,8 +342,8 @@ header{
 	padding-bottom:0px;
 	padding-top:0px;
 	position:relative;
-	border-top:@border1thick;
-	border-bottom:@border1thick;
+	border-top:5px solid #932890;
+	border-bottom:5px solid #932890;
 	
 	.google-map-container{
 		position:relative;
@@ -398,14 +404,14 @@ header{
 
 #media{
 	
-	background:#4e4a41 url("../images/footer_bg.png?ca8a218") repeat-x scroll 0 0;
+	background:#030117;
 	border-top:5px solid #222;
-	
+	text-align:center;
 	
 	
 	.media-toolbar{
 		.inner-container{
-			width:400px;
+			width:190px; /*400px;*/
 			display:inline-block;
 		}
 		
@@ -420,6 +426,7 @@ header{
 			margin-top:44px;
 			text-shadow: -1px -1px 0px rgba(255,255,255,0.3), 1px 1px 0px rgba(0,0,0,0.8);
 			color: #333;
+			display:none;
 		}
 		
 		button.btn-left{
@@ -438,20 +445,28 @@ header{
 			background-color:#222;
 			padding:20px 20px 10px 20px;
 			border-radius:30px 30px 0 0;
-			border-top:3px solid #fff;
-			border-left:3px solid #fff;
-			border-right:3px solid #fff;
+	
 			float:left;
 		}
 	}
 	
-	.ng-gallery{
-		.ng-thumb{
-			height:180px;
-			width:240px;
-			
+	
+	.gallery-container{
+		overflow-x:scroll;
+		width:1000px;
+		display:inline-block;
+		.ng-gallery{
+
+			.ng-thumb{
+				height:180px;
+				width:240px;
+				margin:5px;
+				border:3px solid #fff;
+				display:inline-block;
+			}
 		}
 	}
+	
 }
 
 #sponsors{

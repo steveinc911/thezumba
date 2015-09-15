@@ -86,6 +86,8 @@ app.controller('AppController', ['$scope','$rootScope','$document','$timeout','$
 	};
 	//EOC: time animations
 	
+	
+	
 	/*var areaLat      = 44.2126995,
       areaLng      = -100.2471641,
       areaZoom     = 3;
@@ -161,6 +163,23 @@ app.directive("scroll", function ($window) {
              } else {
                  scope.scrollTopClass = 'hide';
              }
+            scope.$apply();
+        });
+    };
+});
+
+
+
+window.onload=function(){
+	w=250*document.querySelectorAll(".ng-gallery img").length;
+	document.querySelector(".ng-gallery").style.width=w+"px";
+};
+
+app.directive("vscroll", function () {
+    return function(scope, element, attrs) {
+		
+        angular.element(document.querySelector(".ng-gallery")).bind("scroll", function() {
+             console.log(this.scrollLeft);
             scope.$apply();
         });
     };

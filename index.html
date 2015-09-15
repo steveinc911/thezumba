@@ -88,7 +88,7 @@
 	</section>
 	<section id="event-details-overlay"  ng-style="resizeHeight(31.5,9.6,0,1)" resize>
 		<div class="caption">
-			BE A PART OF THE BIGGEST ZUMBA FESTIVAL IN DUBAI
+			BE A PART OF THE <em>BIGGEST</em><br/> ZUMBA FESTIVAL IN DUBAI
 		</div>
 		<img src="images/tagline.png" class="tagline" alt="Dance! like never before" />
 		<div class="details">
@@ -142,8 +142,10 @@
 					<button class="btn-right">VIDEOS</button>
 				</div>
 			</div>
-			<ng-gallery images="ctrl.images" thumbs-num="11">
-			</ng-gallery>
+			<div class="gallery-container">
+				<ng-gallery images="ctrl.images" thumbs-num="11">
+				</ng-gallery>
+		    </div>
 		</div>
 	</article>
 	
