@@ -34,7 +34,7 @@
 <!-- EOC: required for less -->
 
 <script src="custom_modules/lodash/lodash.js"></script>
-<script src="node_modules/angular/angular.js"></script>
+<script src="node_modules/angular/angular.min.js"></script>
 <script type="text/javascript" src="bower_components/ngGallery/src/js/ngGallery.js"></script>
 <script src="js/angular-route.min.js"></script>
 <script src="node_modules/angular-sanitize/angular-sanitize.js"></script>
@@ -44,7 +44,6 @@
 <script src="node_modules/angular-timeline/dist/angular-timeline.js"></script>	
 <script src="node_modules/angular-simple-logger/dist/index.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXnJvicDbYXPwfbatohOiwQdTtvBimT2w&callback=initMap&sensor=false"></script>
-<script src="node_modules/angular-google-maps/dist/angular-google-maps.js"></script>
 <script src="node_modules/html5shiv/dist/html5shiv.js"></script>
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
 
@@ -101,7 +100,7 @@
 		<div class="content">
 			<div class="container">
 				<div class="message col-md-6">
-					<a href="http://www.facebook.com/ZumbaFestivalDXB2016" class="fb-link">
+					<a target="_blank" href="http://www.facebook.com/ZumbaFestivalDXB2016" class="fb-link">
 						<b>Facebook</b>
 						<img src="images/facebook_logo.png" />
 					</a>
@@ -109,7 +108,7 @@
 						<b>Twitter</b>
 						<img src="images/twitter_logo.png" />
 					</a>
-					<a href="http://www.google.com/+Zumbafestdxb" class="google-link">
+					<a target="_blank" href="http://www.google.com/+Zumbafestdxb" class="google-link">
 						<b>Google Plus</b>
 						<img src="images/googleplus.png" />
 					</a>
@@ -119,7 +118,7 @@
 					</a>
 				</div>
 				<div class="presented-by col-md-6">
-					<a href="#"  class="event-company-logo"><img src="images/202events.png" /></a>
+					<a href="http://www.202events.ae/"  class="event-company-logo"><img src="images/202events.png" alt="The 202 events" target="_blank" /></a>
 				</div>
 			</div>
 		</div>
@@ -133,6 +132,21 @@
 			<div ui-view></div>
 		</div>
 	</article>
+	
+	<article id="media" class="section">
+		<div class="container">
+			<div class="media-toolbar">
+				<div class="inner-container">
+					<button class="btn-left">PHOTOS</button>
+					<h1>Media</h1>
+					<button class="btn-right">VIDEOS</button>
+				</div>
+			</div>
+			<ng-gallery images="ctrl.images" thumbs-num="11">
+			</ng-gallery>
+		</div>
+	</article>
+	
 	<article id="about" class="section">
 		<img src="images/poweredge_white.png" class="edge1" />
 		<div class="container">
@@ -161,13 +175,7 @@ kaleidoscope of colors, dance and fun.
 			</div>
 		</div>
 	</article>
-	<article id="media" class="section" style="display:none;">
-		<div class="container">
-			<h1>Media</h1>
-			<ng-gallery images="ctrl.images" thumbs-num="11">
-			</ng-gallery>
-		</div>
-	</article>
+	
 	<style>
 		.google-map-container { width:100%; }
 	</style>
