@@ -172,7 +172,7 @@ app.directive("scroll", function ($window) {
 
 window.onload=function(){
 	w=250*document.querySelectorAll(".ng-gallery img").length;
-	document.querySelector(".ng-gallery").style.width=w+"px";
+	//document.querySelector(".ng-gallery").style.width=w+"px";
 	$(".ng-gallery .ng-scope").each(function(){
 		$(this).append('<div class="img-overlay"><i class="fa fa-share-alt"></i><i class="fa fa-thumbs-up"></i></div>');
 	});
