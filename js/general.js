@@ -378,7 +378,7 @@ app.controller('AppController', ['$scope','$rootScope','$document','$timeout','$
 		return false;
 	};
 	
-	$rootScope.popup=function(url){
+	self.popup=function(url){
 		ngDialog.open({ template: url, className: 'ngdialog-theme-default ngdialog-theme-wide' });
 	};
 	
