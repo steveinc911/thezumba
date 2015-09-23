@@ -25,7 +25,7 @@ function showVenue(){
 	//setTimeout('gmarker.setAnimation(google.maps.Animation.BOUNCE)',2000);
 };
 
-var app = angular.module('Promo', ['angular-timeline','ngRoute','nemLogging','angular-scroll-animate','ui.router','jkuri.gallery','smoothScroll']);
+var app = angular.module('Promo', ['angular-timeline','ngRoute','nemLogging','angular-scroll-animate','ui.router','jkuri.gallery','smoothScroll','ngDialog']);
 
 /*app.config(['uiGmapGoogleMapApiProvider', function(uiGmapGoogleMapApiProvider) {
 	
@@ -39,40 +39,307 @@ var app = angular.module('Promo', ['angular-timeline','ngRoute','nemLogging','an
 
 app.config(function($stateProvider) {
   $stateProvider.state('user', {
-    url:         '',
+    url:         '*path',
     controller: 'AppController',
     templateUrl: 'example.html'
   });
 });
 
 
+/* BOC: FB Gallery */
 
+//Initilizations
+	  var _AppId = '142809216066672';  //App id for your app 
+	  
+	  var _PageId = '1490322427928620'; //Page id
+	  
+	  var _AccessToken ='CAAXCg1gZA4vgBAMNZCmlGDMcNtrjnaf1ZCWt72xa00COCEMgpF2DZBtWZCvCO5XDOlhuoWUIMRsb9OvindAeSYPlsO6qriTKOqf1m5yharkLnB8nlDGL5ay1MzXUDzUbowClgW28fMIGYZB5nWBXwvufj6xxuOgPxPTxdTtkJD7i754hT1TKjHkrjSxo4SZBtUZD';
+	  
+	  
+	  //Load the Facebook SDK asynchronously
+	  (function(d, s, id) {
+		    console.log('load sdk');
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "https://connect.facebook.net/en_US/sdk.js";
+		fjs.parentNode.insertBefore(js, fjs);
+	  }(document, 'script', 'facebook-jssdk'));  
+	  
+	//facebook SDK initilization event fired after loading the SDK  
+	window.fbAsyncInit = function() {
+		  console.log('fb async init');
+		  //should execute when the sdk is  loaded
+		  FB.init({
+			appId      : _AppId,  
+			cookie     : true,  // enable cookies to allow the server to access the session
+			xfbml      : true,  // parse social plugins on this page
+			version    : 'v2.4' // use version 2.2
+		  });
+	};
+	  
+	  
+	function FBFetchImageReqRes(NodeId){
+		this.Query = '/' + NodeId + '?fields=height,width,images';  //Api request query
+		this.HandleResponse = function(response){
+			if (response && !response.error) {
+				
+				    //Getting the index of image link of the preferred width
+				    var _PreferredWidth =  800;
+				    var _WidthDiff = 0;
+				    var _LowestPositiveDiff = 10000;
+				     var _LowestPositiveIndex = 0;
+					for(var i = 0; i < response.images.length; i++){
+						
+						widthDiff =  response.images[i].width - _PreferredWidth;
+						
+						if(widthDiff == 0){ //exact match
+							_LowestPositiveIndex = i;
+							break;
+						} else if(widthDiff > 0){  //Positive width difference
+							
+							if(_LowestPositiveDiff > widthDiff){
+							    _LowestPositiveDiff = widthDiff;
+								_LowestPositiveIndex = i;
+							}
+						}
+					} //end for loop
+				
+				//console.log("height:" + response.images[_LowestPositiveIndex].height + " " + " Width:" + response.images[_LowestPositiveIndex].width);
+				var img = document.createElement("img");
+				//Images have links to images of dofferent sizes
+				img.setAttribute("src", response.images[_LowestPositiveIndex].source);
+				img.setAttribute("height", response.images[_LowestPositiveIndex].height);
+				img.setAttribute("width", response.images[_LowestPositiveIndex].width);
+				
+				
+				var div = document.getElementById("img-frame")
+				div.appendChild(img);
+				
+			} //end if (response && !response.error)
+			
+			//document.getElementById("resp").innerHTML = JSON.stringify(response);
+			
+		} //end this.HandleResponse
+	}
+	  
+	 
+	//contains the image info needed to fetch the image
+	function ImageInfo(Height, Width, Url){
+		this.height = Height;
+		this.width = Width;
+		this.url = Url;
+	}
+	  
+	//This will contain FB image info
+	function FBGalleryImage(ThumbInfo, ImageInfo, LikeCount, CommentCount, LikesUserIDArray, Description, FBImageID){
+		this.thumb = ThumbInfo;  //will contain height width and link
+		this.image = ImageInfo;  //height width and link
+		this.likes = LikeCount;
+		this.commentcount = CommentCount;
+		this.likedUserID = LikesUserIDArray;
+		this.description = Description;
+		this.fbID = FBImageID;
+	}
+	  
+	function getPreferredImageIndex(ImageArray, PreferredWidth){
+		/*
+		  Gets the index of the image object with width equal to or greater then preferred width
+		*/
+		
+		var _WidthDiff = 0;
+		var _ImageIndex = 0;
+		var _LowestPositiveWidthDiff = 10000;
+		
+		for(var i = 0; i < ImageArray.length; i++){
+			
+			_WidthDiff =  ImageArray[i].width - PreferredWidth;
 
+			if(_WidthDiff == 0){
+				_ImageIndex = i;
+				break;
+			} else if(_WidthDiff > 0){  //Positive width difference
 
+				//finding the lowest positive width difference
+				if(_LowestPositiveWidthDiff > _WidthDiff){ 
+					_LowestPositiveWidthDiff = _WidthDiff;
+					_ImageIndex = i;
+				}
+			}
+		} //end loop
+		
+		return _ImageIndex;
+		
+	}//end getImageIndex
+	  
+	function FetchAlbumPhotos(AlbumID){
+		this.Query = '/' + AlbumID + '?fields=photos{name,images,likes.summary(true),comments.summary(true)}';
+		this.CallBackFunction = function(ImageArray){ console.log('do nothing'); };
+		this.HandleResponse = function(response){
+			
+			if (response && !response.error) {
+				
+				_GallaryImageArray = [];
+				
+				var _ResponseData = response.photos.data;
+				
+				//console.log('response data: ' + JSON.stringify(_ResponseData));
+				
+				var preferredThumbWidth = 240;
+				var thumbIndex = 0;
+				
+				var preferredImageWidth = 800;
+				var imageIndex = 0;
+				
+				var _ThumbInfo;
+				var _ImageInfo;
+				var _GallaryImage;
+				
+				var _Desc = '';
+				
+				//loops through photo list
+				for(var i = 0; i < _ResponseData.length; i++){
 
-app.controller('AppController', ['$scope','$rootScope','$document','$timeout','$window', function AppController($rootScope, $document, $timeout, $scope, $window) {
+					thumbIndex = getPreferredImageIndex(_ResponseData[i].images, preferredThumbWidth);
+					
+					// console.log(' thumb index: ' + thumbIndex);
+					_ThumbInfo = new ImageInfo( _ResponseData[i].images[thumbIndex].height, 
+											   	_ResponseData[i].images[thumbIndex].width,
+											   _ResponseData[i].images[thumbIndex].source
+											  );
+					
+				    //console.log(' thumb info: ' + JSON.stringify(_ThumbInfo));
+					
+					imageIndex = getPreferredImageIndex(_ResponseData[i].images, preferredImageWidth);
+					
+					_ImageInfo = new ImageInfo( _ResponseData[i].images[imageIndex].height, 
+											   	_ResponseData[i].images[imageIndex].width,
+											   _ResponseData[i].images[imageIndex].source
+											  );
+					
+					//console.log(' image info: ' + JSON.stringify(_ImageInfo));
+					
+					
+					
+					if(_ResponseData[i].name){
+						_Desc = _ResponseData[i].name;
+					}else{
+						_Desc = '';
+					}
+					
+					_GallaryImage = new FBGalleryImage(_ThumbInfo, 
+													   _ImageInfo, 
+													   _ResponseData[i].likes.summary.total_count,   //Likes
+													   _ResponseData[i].comments.summary.total_count,   //CommentCount
+													   _ResponseData[i].likes.data,   //LikesUserIDArray
+													   _Desc,  //Description this can be undefined if there is no descripton
+													   _ResponseData[i].id); //FBImageID
+					
+					//console.log(' image info: ' + JSON.stringify(_GallaryImage));
+					
+					//setting thumb details
+					_GallaryImageArray.push(_GallaryImage);
+					
+				}//for loop
+				
+				console.log(' calling back');
+				
+				this.CallBackFunction(_GallaryImageArray);
+				
+			}else{
+				
+				this.CallBackFunction(response); //Error passed down
+			}// end if (response && !response.error)
+			
+			
+			
+			
+		}// end this.HandleResponse
+	}
+	  
+	function FBLikePhoto(FBPhotoID, LikeArray){
+		
+	}
+	  
+	//object to handle FB get API calls
+	function FBApiGetCall( AccessToken, //valid access token
+						   ApiReqResHandler)  //function that can handle the response
+	{
+		FB.api(ApiReqResHandler.Query,
+			   'get',
+			   { access_token : AccessToken },
+			   function(response) {
+			       ApiReqResHandler.HandleResponse(response);
+               });
+	}	  
+	  
+	function FBApiPostCall(AccessToken, ApiCallHandler){
+			   FB.api(ApiCallHandler.Query,
+			   'post',
+			   { access_token : AccessToken },
+			   function(response) {
+			       ApiCallHandler.HandleResponse(response);
+               });
+	}
+
+	  
+	function loadAlbumData(){
+		var _albumId = '1490323137928549';
+		//var fbPhotoreqRes = new FBAlbumPhotosReqRes(_albumId);
+		var fbPhotoreqRes = new FetchAlbumPhotos(_albumId);
+		fbPhotoreqRes.CallBackFunction = function(ImageArray){console.log(ImageArray);};
+		FBApiGetCall(_AccessToken, fbPhotoreqRes);
+	}
+
+	 
+	function FBGetPageLikes(pageId){
+		this.Query = pageId + "?fields=likes";
+		this.Callback = function(likeCount){};
+		this.HandleResponse = function(response){
+		   console.log(response);
+		   if(response && !response.error){
+				this.Callback(response.likes);
+		   }else{
+				this.Callback(0);
+		   }
+		};
+	}
+
+	function displayFBLikes(){
+	    var _PageId = "1490322427928620";
+		var likeApiReq = new FBGetPageLikes(_PageId);
+		likeApiReq.Callback = function(response){
+			$(".no-of-likes b").html(response);
+		};
+		FBApiGetCall(_AccessToken, likeApiReq);
+	}
 	
+	function loadImage(){
+		var _ImageId = '1490583157902547';
+		var fbImageReqRes = new FBFetchImageReqRes(_ImageId);
+		FBApiGetCall(_AccessToken, fbImageReqRes);
+	}
+	  
+	  
+	function FBLikeAction(){
+		
+		FB.getLoginStatus(function(reponse){
+		
+			console.log(reponse);
+		
+		});
+	}
+
+/* EOC: FB Gallery */
+
+app.controller('AppController', ['$scope','$rootScope','$document','$timeout','$window','ngDialog', function AppController($rootScope, $document, $timeout, $scope, $window, ngDialog) {
+	
+	
+	
+	 
 	var self = this;
- 	
-    self.images = [
-        {thumb: 'images/thumbs/1.jpg', img: 'images/1.jpg', description: 'Image 1'},
-        {thumb: 'images/thumbs/2.jpg', img: 'images/2.jpg', description: 'Image 2'},
-        {thumb: 'images/thumbs/3.jpg', img: 'images/3.jpg', description: 'Image 3'},
-        {thumb: 'images/thumbs/4.jpg', img: 'images/4.jpg', description: 'Image 4'},
-		{thumb: 'images/thumbs/5.jpg', img: 'images/5.jpg', description: 'Image 5'},
-        {thumb: 'images/thumbs/6.jpg', img: 'images/6.jpg', description: 'Image 6'},
-        {thumb: 'images/thumbs/7.jpg', img: 'images/7.jpg', description: 'Image 7'},
-        {thumb: 'images/thumbs/8.jpg', img: 'images/8.jpg', description: 'Image 8'},
-		{thumb: 'images/thumbs/9.jpg', img: 'images/9.jpg', description: 'Image 9'},
-        {thumb: 'images/thumbs/10.jpg', img: 'images/10.jpg', description: 'Image 10'},
-        {thumb: 'images/thumbs/11.jpg', img: 'images/11.jpg', description: 'Image 11'}
-    ];
 	
-	$(".ng-isolate-scope .ng-overlay").appendTo("body");
-	$(".ng-isolate-scope .ng-overlay").remove();
 	
-	$(".ng-isolate-scope .ng-gallery-content").appendTo("body");
-	$(".ng-isolate-scope .ng-gallery-content").remove();
 	
 	//BOC: time animations
 	self.animateElementIn = function($el) {
@@ -86,7 +353,88 @@ app.controller('AppController', ['$scope','$rootScope','$document','$timeout','$
 	};
 	//EOC: time animations
 	
+	self.sharePage=function(socialNetwork){
+		var width  = 575,
+		height = 400,
+		left   = ($(window).width()  - width)  / 2,
+		top    = ($(window).height() - height) / 2,
+		opts   = 'status=1' +
+				 ',width='  + width  +
+				 ',height=' + height +
+				 ',top='    + top    +
+				 ',left='   + left;
+		var url;
+		switch(socialNetwork){
+			case 'twitter':
+				url="https://twitter.com/intent/tweet?text=Join%20more%20than%202000%20people%20at%20the%20BIGGEST%20Zumba%20Festival%20in%20Dubai&url=http%3A%2F%2Fwww.zumbafestdxb.com&via=ZumbaFestDXB";
+				break;
+			case 'gplus':
+				url="https://plus.google.com/share?url=http://www.zumbafestdxb.com";
+				break;
+		}
+		
+		window.open(url, 'twitter', opts);
+
+		return false;
+	};
 	
+	$rootScope.popup=function(url){
+		ngDialog.open({ template: url, className: 'ngdialog-theme-default ngdialog-theme-wide' });
+	};
+	
+	$rootScope.createGallery=function(imgArray){
+		
+		console.log(imgArray);
+ 	
+		self.images = imgArray;
+		
+		$rootScope.$apply();
+		
+		$(".ng-isolate-scope .ng-overlay").appendTo("body");
+		$(".ng-isolate-scope .ng-overlay").remove();
+
+		$(".ng-isolate-scope .ng-gallery-content").appendTo("body");
+		$(".ng-isolate-scope .ng-gallery-content").remove();
+		
+		
+		
+		$(".ng-gallery .ng-scope").each(function(){
+			$(this).append('<div class="img-overlay"><i class="fa fa-share-alt"></i><i class="fa fa-thumbs-up"></i></div>');
+		});
+	};
+	
+	$rootScope.loadFBData=function(){
+		var _albumId = '1490323137928549';
+		//var fbPhotoreqRes = new FBAlbumPhotosReqRes(_albumId);
+		var fbPhotoreqRes = new FetchAlbumPhotos(_albumId);
+		fbPhotoreqRes.CallBackFunction = function(ImageArray){
+			imgArray=[];
+			ImageArray.forEach(function(img,k){
+				imgArray.push({
+					'thumb':img.thumb.url,
+					'img':img.image.url,
+					'description':img.description
+				});
+			});
+		
+		
+			angular.element(document.getElementById('rt')).scope().createGallery(imgArray);
+		};
+		FBApiGetCall(_AccessToken, fbPhotoreqRes);
+		
+		displayFBLikes();
+	};
+	
+	$rootScope.mapHeight=37;
+	
+	
+	self.showMenu=function(){
+		document.querySelector(".menu").style.display="block";	
+	};
+	
+	self.hideMobileMenu=function(){
+		document.querySelector(".menu").removeAttribute("style");	
+	};
 	
 	/*var areaLat      = 44.2126995,
       areaLng      = -100.2471641,
@@ -116,7 +464,9 @@ app.directive('resize', function ($window) {
         }, function (newValue, oldValue) {
             scope.windowHeight = newValue.h;
             scope.windowWidth = newValue.w;
-
+			
+			
+			
             scope.resizeHeight = function (percentH,marginTop,marginBottom,mode) {
                 scope.$eval(attr.notifier);
 				if(marginTop>0){
@@ -173,9 +523,17 @@ app.directive("scroll", function ($window) {
 window.onload=function(){
 	w=250*document.querySelectorAll(".ng-gallery img").length;
 	//document.querySelector(".ng-gallery").style.width=w+"px";
-	$(".ng-gallery .ng-scope").each(function(){
-		$(this).append('<div class="img-overlay"><i class="fa fa-share-alt"></i><i class="fa fa-thumbs-up"></i></div>');
-	});
+	angular.element(document.getElementById('rt')).scope().loadFBData();
+	
+	
+	
+	$(document).scrollTop(0);
+	$(".loading-overlay").fadeOut();
+	$("body").css({'overflow-y':'scroll'});
+	$(".caption").addClass("bounce-in");
+	$(".tagline").addClass("bounce-in");
+	
+	
 };
 
 app.directive("vscroll", function () {

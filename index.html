@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  ng-app="Promo" ng-controller="AppController as ctrl">
+<html lang="en" id="rt"  ng-app="Promo" ng-controller="AppController as ctrl">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +12,7 @@
 <meta property="og:description" content="The biggest Zumba Festival in Dubai. Join the party at Zabeel Park, Dubai. For all ages, no experience needed. Fun for friends and family." />
 <meta property="og:url" content="http://www.zumbafestdxb.com/" />
 <meta property="og:site_name" content="Zumba Festival DXB 2016" />
-<meta property="og:image" content="images/landingpage/logo.png" />
+<meta property="og:image" content="images/ogimage.jpg" />
 <link href="/favicon.png" rel="shortcut icon" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
@@ -23,6 +23,8 @@
 	
 <link rel="stylesheet" type="text/css" href="bower_components/ngGallery/src/css/ngGallery.css">
 <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="node_modules/ng-dialog/css/ngDialog.css">
+	<link rel="stylesheet" href="node_modules/ng-dialog/css/ngDialog-theme-default.min.css">
 	
 
 <!-- BOC: required for less -->
@@ -45,6 +47,7 @@
 <script src="node_modules/angular-simple-logger/dist/index.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXnJvicDbYXPwfbatohOiwQdTtvBimT2w&callback=initMap&sensor=false"></script>
 <script src="node_modules/html5shiv/dist/html5shiv.js"></script>
+<script src="node_modules/ng-dialog/js/ngDialog.min.js"></script>
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
 
 <script src="js/general.js"></script>	
@@ -52,30 +55,46 @@
 </head>
 <body id="body">
 <div class="container-fill">
+	<div class="social-menu-container" ng-style="resizeHeight(0,9.6,0,0)" resize>
+		<div class="social-menu">
+			<div class="fb-like" data-href="https://www.facebook.com/ZumbaFestivalDXB2016" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+			<!--<a href="#" id="like-link" class="sz2"><b>Like</b></a>
+			<a href="#" id="share-link" class="sz2"><b>Share</b></a>-->
+		</div>
+	</div>
 	<header id="header" ng-style="resizeHeight(9.6,0,0,0)" resize>
-		<div class="container">
-			<a href="#home" scroll-to="header" 
-    duration="500" easing="false" id="logo" alt="Zumba Festival DXB 2016">
-				<b>Zumba Festival DXB 2016</b>
-				<img src="images/logo.png" id="logo-img" />
-			</a>
+		<div class="container menu">
+			<div class="logo-container">
+				<a href="#home" scroll-to="header" 
+		duration="500" easing="false" id="logo" alt="Zumba Festival DXB 2016" callback-before="ctrl.hideMobileMenu()">
+					<b>Zumba Festival DXB 2016</b>
+					<img src="images/logo.png" id="logo-img" />
+				</a>
+			</div>
 			<nav>
-				<a href="#sponsors" scroll-to="sponsors" 
-    duration="500" easing="false" id="sponsors-link" class="sz2"><i class="icon-like"></i><b>Sponsors</b></a>
-				<a href="#venue" scroll-to="map" 
-    duration="500" easing="false" id="map-link" class="sz1"><i class="icon-location"></i><b>Venue</b></a>
-				<a href="#about" scroll-to="about" 
-    duration="500" easing="false" id="about-link" class="sz1"><i class="icon-question"></i><b>About</b></a>
-				<a href="#media" alt="not ready" scroll-to="media" 
-    duration="500" easing="false" id="media-link" class="sz2"><i class="icon-camera"></i><b>Media</b></a>
 				<a href="#schedule" scroll-to="schedule" 
-    duration="500" easing="false" id="schedule-link" class="sz1"><i class="icon-clock"></i><b>Schedule</b></a>
+    duration="500" easing="false" id="schedule-link" callback-before="ctrl.hideMobileMenu()" class="sz1"><i class="icon-clock"></i><b>Schedule</b></a>
+				<a href="#media-title" alt="not ready" scroll-to="media-title" 
+    duration="500" easing="false" id="media-link" callback-before="ctrl.hideMobileMenu()" class="sz2"><i class="icon-camera"></i><b>Media</b></a>
+				<a href="#about" scroll-to="about" 
+    duration="500" easing="false" id="about-link" callback-before="ctrl.hideMobileMenu()" class="sz1"><i class="icon-question"></i><b>About</b></a>
+				<a href="#venue" scroll-to="map" 
+    duration="500" easing="false" id="map-link" callback-before="ctrl.hideMobileMenu()" class="sz1"><i class="icon-location"></i><b>Venue</b></a>
+				<a href="#" scroll-to="tickets" callback-before="ctrl.hideMobileMenu()" 
+    duration="500" easing="false" id="tickets-link" class="sz1"><i class="icon-tag"></i><b>Buy Tickets</b></a>
+				
+				
+				
 				
 				
 				
 				
 				
 			</nav>
+		</div>
+		<div class="mobile">
+			<button class="btn btn-tickets">BUY TICKETS</button>
+			<button class="btn" ng-click="ctrl.showMenu()">MENU</button>
 		</div>
 	</header>
 	<a scroll id="scroll-top-orb" href="#home" ng-class="scrollTopClass" scroll-to="header" 
@@ -86,11 +105,14 @@
 	<section id="banner"  ng-style="resizeHeight(50,0,0,0)" resize>
 		
 	</section>
-	<section id="event-details-overlay"  ng-style="resizeHeight(31.5,9.6,0,1)" resize>
-		<div class="caption">
-			BE A PART OF THE <em>BIGGEST</em><br/> ZUMBA FESTIVAL IN DUBAI
+	<section id="event-details-overlay"  ng-style="resizeHeight(42,0,0,1)" resize>
+		<div class="no-of-likes">
+			<i class="fa fa-facebook"></i><b>--</b> likes
 		</div>
-		<img src="images/tagline.png" class="tagline" alt="Dance! like never before" />
+		<div class="caption fly-right">
+			<small>JOIN MORE THAN 2000 PEOPLE</small><br/>AT THE <em>BIGGEST</em><br/> <b>ZUMBA FESTIVAL</b> IN <b>DUBAI</b>
+		</div>
+		<img src="images/tagline.png" class="tagline fly-left" alt="Dance! like never before" />
 		<div class="details">
 			January 2016
 		</div>
@@ -99,25 +121,25 @@
 		<img src="images/powderedge.png" class="edge1" />
 		<div class="content">
 			<div class="container">
-				<div class="message col-md-6">
+				<div class="message">
 					<a target="_blank" href="http://www.facebook.com/ZumbaFestivalDXB2016" class="fb-link">
 						<b>Facebook</b>
 						<img src="images/facebook_logo.png" />
 					</a>
-					<a href="#" class="fb-link">
+					<a href="#" ng-click="ctrl.sharePage('twitter')" class="fb-link">
 						<b>Twitter</b>
 						<img src="images/twitter_logo.png" />
 					</a>
-					<a target="_blank" href="http://www.google.com/+Zumbafestdxb" class="google-link">
+					<a href="#" class="google-link" ng-click="ctrl.sharePage('gplus')">
 						<b>Google Plus</b>
 						<img src="images/googleplus.png" />
 					</a>
-					<a href="#" class="fb-link">
+					<a href="#" style="display:none;" ng-click="ctrl.sharePage('instagram')" class="fb-link">
 						<b>Instagram</b>
 						<img src="images/instagram_logo.png" />
 					</a>
 				</div>
-				<div class="presented-by col-md-6">
+				<div class="presented-by">
 					<a href="http://www.202events.ae/"  class="event-company-logo"><img src="images/202events.png" alt="The 202 events" target="_blank" /></a>
 				</div>
 			</div>
@@ -134,14 +156,14 @@
 	</article>
 	
 	<article id="media" class="section">
-		<div class="container">
-			<div class="media-toolbar">
-				<div class="inner-container">
-					<button class="btn-left">PHOTOS</button>
-					<h1>Media</h1>
-					<button class="btn-right">VIDEOS</button>
-				</div>
+		<div class="media-toolbar">
+			<div class="inner-container">
+				<button class="btn-left">PHOTOS</button>
+				<h1 id="media-title">Media</h1>
+				<button class="btn-right">VIDEOS</button>
 			</div>
+		</div>
+		<div class="container">
 			<div class="gallery-container">
 				<ng-gallery images="ctrl.images" thumbs-num="11">
 				</ng-gallery>
@@ -154,7 +176,8 @@
 		<div class="container">
 			<h1>About</h1>
 			<div class="clearfix"></div>
-				<p class="col-md-12">
+				<img src="images/zumbagirl.jpg" class="about-zumba-girl" />
+				<p>
 					Staying fit and healthy has never been this
 exciting, with Zumba we promise you wont
 have to frown. You can smile as you shed the
@@ -172,9 +195,7 @@ balloon and color fights . We also have an
 array of unique and different artists to entertain the crowd. The event is going to be a
 kaleidoscope of colors, dance and fun.
 				</p>
-			<div class="row">
-				<img src="images/about_pictures.jpg" class="about-pics" />
-			</div>
+			
 		</div>
 	</article>
 	
@@ -199,17 +220,35 @@ kaleidoscope of colors, dance and fun.
 	</section>
 	<section id="sponsors" class="section">
 		<h1>Sponsors &amp; Partners</h1>
-		<div class="container">
-			<ul class="row">
-				<li class="col-md-4"><b>Kelloggs</b><img src="images/sponsors/kellogs.png" /></li>
-				<li class="col-md-4"><b>Tropicana</b><img src="images/sponsors/tropicana.png" /></li>
-				<li class="col-md-4"><b>Ultimate Nutrition</b><img src="images/sponsors/ultimatenutrition.png" /></li>
-			</ul>
-		</div>
+		<ul>
+			<li><b>Kelloggs</b><img src="images/sponsors/kellogs.png" /></li>
+			<li><b>Tropicana</b><img src="images/sponsors/tropicana.png" /></li>
+			<li><b>Ultimate Nutrition</b><img src="images/sponsors/ultimatenutrition.png" /></li>
+		</ul>
 	</section>
 	<footer>
 		<img src="images/powderedge_footer.png" class="edge1" />
+		<div class="container">
+			<nav>
+				<a href="#terms" ng-click="popup('TERMSOFSERVICE.html');" class="first">
+					Terms and conditions
+				</a>
+			</nav>
+			<span class="copyright">
+				All rights reserved <a href="http://www.202events.ae/"><b>202 Events</b><img src="images/202events.png" /></a>
+			</span>
+		</div>
 	</footer>
+	<div class="loading-overlay" ng-style="resizeHeight(300,0,0,0)" resize>
+		<img src="images/logo.png" />
+		<div class="spinner">
+		  <div class="dot1"></div>
+		  <div class="dot2"></div>
+		</div>
+	</div>
 </div>
+	<!--
+Copyright: <a href='http://www.123rf.com/profile_thoermer'>thoermer / 123RF Stock Photo</a>
+-->
 </body>
 </html>
