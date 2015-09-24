@@ -5,16 +5,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="The biggest Zumba Festival in Dubai. Join the party at Zabeel Park, Dubai. For all ages, no experience needed. Fun for friends and family." />
-<meta name="keywords" content="zumba,party,friends,family,fitness,dubai,uae,emirates,arab,work out,dance,festival,zabeel,park" />
+<meta name="description" content="The biggest Zumba Festival in Dubai. Join more than 2000 people at Zabeel Park, Dubai. For all ages, no experience needed. Fun for friends and family. Enjoy the festivities with Zumba Sessions, Color fight, Water balloon fight, Street dance, African dancers, African beaters, Health and wellness talk." />
+<meta name="keywords" content="zumba,party,friends,family,fitness,dubai,uae,emirates,arab,work out,dance,festival,zabeel,park,color fight,water balloon fight,street dance,african dancers,african beaters,health,wellness,talk" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="Zumba Festival DXB 2016 - Zabeel Park, Dubai" />
-<meta property="og:description" content="The biggest Zumba Festival in Dubai. Join the party at Zabeel Park, Dubai. For all ages, no experience needed. Fun for friends and family." />
+<meta property="og:description" content="The biggest Zumba Festival in Dubai. Join more than 2000 people at Zabeel Park, Dubai. For all ages, no experience needed. Fun for friends and family. Enjoy the festivities with Zumba Sessions, Color fight, Water balloon fight, Street dance, African dancers, African beaters, Health and wellness talk." />
 <meta property="og:url" content="http://www.zumbafestdxb.com/" />
 <meta property="og:site_name" content="Zumba Festival DXB 2016" />
 <meta property="og:image" content="images/ogimage.jpg" />
 <link href="/favicon.png" rel="shortcut icon" type="image/x-icon" />
-<link rel="stylesheet" type="text/css" href="css/reset.css">
+<!--<link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="custom_modules/fontastic/styles.css">
 <link rel="stylesheet" type="text/css" href="node_modules/angular-timeline/dist/angular-timeline.css">
@@ -24,18 +24,20 @@
 <link rel="stylesheet" type="text/css" href="bower_components/ngGallery/src/css/ngGallery.css">
 <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="node_modules/ng-dialog/css/ngDialog.css">
-	<link rel="stylesheet" href="node_modules/ng-dialog/css/ngDialog-theme-default.min.css">
+	<link rel="stylesheet" href="node_modules/ng-dialog/css/ngDialog-theme-default.min.css">-->
+<link rel="stylesheet" type="text/css" href="css/allcss.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
 	
 
 <!-- BOC: required for less -->
-<link rel="stylesheet/less" type="text/css" href="css/style.less">	
+<!--<link rel="stylesheet/less" type="text/css" href="css/style.less">	
 <script type="text/javascript">
 	less = { env: 'development' };
 </script>
-<script src="js/less.min.js"></script>
+<script src="js/less.min.js"></script>-->
 <!-- EOC: required for less -->
 
-<script src="custom_modules/lodash/lodash.js"></script>
+<!--<script src="custom_modules/lodash/lodash.js"></script>
 <script src="node_modules/angular/angular.min.js"></script>
 <script type="text/javascript" src="bower_components/ngGallery/src/js/ngGallery.js"></script>
 <script src="js/angular-route.min.js"></script>
@@ -45,15 +47,17 @@
 <script src="bower_components/ngSmoothScroll/angular-smooth-scroll.js"></script>
 <script src="node_modules/angular-timeline/dist/angular-timeline.js"></script>	
 <script src="node_modules/angular-simple-logger/dist/index.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXnJvicDbYXPwfbatohOiwQdTtvBimT2w&callback=initMap&sensor=false"></script>
 <script src="node_modules/html5shiv/dist/html5shiv.js"></script>
 <script src="node_modules/ng-dialog/js/ngDialog.min.js"></script>
-<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="node_modules/jquery/dist/jquery.min.js"></script>-->
 
+<script src="node_modules/angular/angular.min.js"></script>
+<script src="js/alljs.js"></script>
 <script src="js/general.js"></script>	
 <title>Zumba Festival DXB 2016 - Zabeel Park, Dubai</title>
 </head>
 <body id="body">
+
 <div class="container-fill">
 	<div class="social-menu-container" ng-style="resizeHeight(0,9.6,0,0)" resize>
 		<div class="social-menu">
@@ -80,8 +84,8 @@
     duration="500" easing="false" id="about-link" callback-before="ctrl.hideMobileMenu()" class="sz1"><i class="icon-question"></i><b>About</b></a>
 				<a href="#venue" scroll-to="map" 
     duration="500" easing="false" id="map-link" callback-before="ctrl.hideMobileMenu()" class="sz1"><i class="icon-location"></i><b>Venue</b></a>
-				<a href="#" scroll-to="tickets" callback-before="ctrl.hideMobileMenu()" 
-    duration="500" easing="false" id="tickets-link" class="sz1"><i class="icon-tag"></i><b>Buy Tickets</b></a>
+				<a href="#" ng-click="ctrl.showDialog('staytuned.html')"
+    id="tickets-link" class="sz1"><i class="icon-tag"></i><b>Buy Tickets</b></a>
 				
 				
 				
@@ -195,7 +199,6 @@ balloon and color fights . We also have an
 array of unique and different artists to entertain the crowd. The event is going to be a
 kaleidoscope of colors, dance and fun.
 				</p>
-			
 		</div>
 	</article>
 	
@@ -210,6 +213,7 @@ kaleidoscope of colors, dance and fun.
 			</div>
 			<div class="address">
 				<img src="images/zabeelpark.jpg" />
+				<img itemprop="image" style="display:none;" src="images/ogimage.jpg" />
 				<h2>Zabeel Park</h2>
 				Sheikh Rashid Rd<br/>
 				Dubai<br/>
@@ -230,7 +234,7 @@ kaleidoscope of colors, dance and fun.
 		<img src="images/powderedge_footer.png" class="edge1" />
 		<div class="container">
 			<nav>
-				<a href="#terms" ng-click="ctrl.popup('TERMSOFSERVICE.html');" class="first">
+				<a href="#" ng-click="ctrl.showDialog('TERMSOFSERVICE.html')" class="first">
 					Terms and conditions
 				</a>
 			</nav>
@@ -250,5 +254,16 @@ kaleidoscope of colors, dance and fun.
 	<!--
 Copyright: <a href='http://www.123rf.com/profile_thoermer'>thoermer / 123RF Stock Photo</a>
 -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQQotzxSCobatISPJxd_nUlMGCw0vzizk&callback=initMap&sensor=false"></script>
+<script> 
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-67388707-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 </body>
 </html>

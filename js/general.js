@@ -332,7 +332,39 @@ app.config(function($stateProvider) {
 
 /* EOC: FB Gallery */
 
-app.controller('AppController', ['$scope','$rootScope','$document','$timeout','$window','ngDialog', function AppController($rootScope, $document, $timeout, $scope, $window, ngDialog) {
+app.controller('EmailController',['$scope','$http',function EmailController($scope,$http){
+	$scope.email = {
+		text: ''
+	};
+	
+	$scope.addClicked=false;
+	$scope.addEmail=function($event){
+		
+		
+		if($scope.emailForm.$valid){
+			$(".get-email .fa-wifi").hide();
+			$(".get-email .loading-anim").show();
+			$scope.addClicked=true;
+			$http({
+			url: '/php/addemail.php',
+			method: "POST",
+			data: 'email='+document.getElementById("temail").value,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			}).success(function (data, status, headers, config) {
+				console.log(data);
+				$('.get-email').hide();
+				$('.thank-you').show();
+			}).error(function (data, status, headers, config) {});
+			
+		}
+		else{
+		}
+		
+		
+	};
+}]);
+
+app.controller('AppController', ['$scope','$rootScope','$document','$timeout','$window','ngDialog','$http', function AppController($rootScope, $document, $timeout, $scope, $window, ngDialog, $http) {
 	
 	
 	
@@ -378,28 +410,37 @@ app.controller('AppController', ['$scope','$rootScope','$document','$timeout','$
 		return false;
 	};
 	
-	self.popup=function(url){
-		ngDialog.open({ template: url, className: 'ngdialog-theme-default ngdialog-theme-wide' });
+	self.showDialog=function(url){
+		if(url=='TERMSOFSERVICE.html'){
+			styleClass='ngdialog-theme-default ngdialog-theme-wide';
+		}
+		else{
+			styleClass='ngdialog-theme-default';
+		}
+		ngDialog.open({ template: url, className: styleClass });
 	};
 	
+	
+	
 	$rootScope.createGallery=function(imgArray){
-		
-		console.log(imgArray);
- 	
-		self.images = imgArray;
-		
-		$rootScope.$apply();
-		
-		$(".ng-isolate-scope .ng-overlay").appendTo("body");
-		$(".ng-isolate-scope .ng-overlay").remove();
+		$("body").ready(function(){
 
-		$(".ng-isolate-scope .ng-gallery-content").appendTo("body");
-		$(".ng-isolate-scope .ng-gallery-content").remove();
-		
-		
-		
-		$(".ng-gallery .ng-scope").each(function(){
-			$(this).append('<div class="img-overlay"><i class="fa fa-share-alt"></i><i class="fa fa-thumbs-up"></i></div>');
+			self.images = imgArray;
+
+			$rootScope.$apply();
+
+
+			$(".ng-isolate-scope .ng-overlay").appendTo("body");
+			$(".ng-isolate-scope .ng-overlay").remove();
+
+			$(".ng-isolate-scope .ng-gallery-content").appendTo("body");
+			$(".ng-isolate-scope .ng-gallery-content").remove();
+
+
+
+			/*$(".ng-gallery .ng-scope").each(function(){
+				$(this).append('<div class="img-overlay"><i class="fa fa-share-alt"></i><i class="fa fa-thumbs-up"></i></div>');
+			});*/
 		});
 	};
 	
