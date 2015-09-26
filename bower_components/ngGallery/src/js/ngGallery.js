@@ -35,9 +35,9 @@ angular.module('jkuri.gallery', [])
 	'<div class="ng-gallery-content" ng-show="opened">' +
 	'  <div class="uil-ring-css" ng-show="loading"><div></div></div>' + 
 	'  <a class="close-popup" ng-click="closeGallery()"><i class="fa fa-close"></i></a>' +
-	'  <a class="nav-left" ng-click="prevImage()"><i class="fa fa-angle-left"></i></a>' +
+	'  <a class="nav-left" ng-click="prevImage()"><i class="icon-chevron-left"></i></a>' +
 	'  <img ng-src="{{ img }}" ng-click="nextImage()" ng-show="!loading" class="effect" />' +
-	'  <a class="nav-right" ng-click="nextImage()"><i class="fa fa-angle-right"></i></a>' +
+	'  <a class="nav-right" ng-click="nextImage()"><i class="icon-chevron-right"></i></a>' +
 	'  <span class="info-text">{{ index + 1 }}/{{ images.length }} - {{ description }}</span>' +
 	'  <div class="ng-thumbnails-wrapper">' +
 	'    <div class="ng-thumbnails slide-left">' +
