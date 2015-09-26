@@ -1,3 +1,4 @@
+@echo off
 node node_modules/uglify-js/bin/uglifyjs -o js/addons/lodash.min.js custom_modules/lodash/lodash.js
 node node_modules/uglify-js/bin/uglifyjs -o js/addons/lodash.min.js bower_components/ngGallery/src/js/ngGallery.js
 node node_modules/uglify-js/bin/uglifyjs -o js/addons/ngGallery.min.js node_modules/angular-sanitize/angular-sanitize.js
@@ -13,3 +14,4 @@ xcopy node_modules\jquery\dist\jquery.min.js js\addons\jquery.min.js
 cd js\addons
 copy /b lodash.min.js+ngGallery.min.js+angular-route.min.js+angular-sanitize.min.js+angular-ui-router.min.js+angular-scroll-animate.min.js+angular-smooth-scroll.min.js+angular-timeline.min.js+index.min.js+ngDialog.min.js+jquery.min.js ..\alljs.js
 cd ..\..
+time /t

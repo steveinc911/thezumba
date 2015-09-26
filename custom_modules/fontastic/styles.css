@@ -170,9 +170,6 @@
 .icon-unlink:before {
   content: "S";
 }
-.icon-linux:before {
-  content: "T";
-}
 .icon-stackoverflow:before {
   content: "U";
 }
@@ -217,4 +214,52 @@
 }
 .icon-share-outline:before {
   content: "7";
+}
+.icon-bullet-train-tunneled:before {
+  content: "8";
+}
+.icon-bus:before {
+  content: "9";
+}
+.icon-car-side:before {
+  content: "!";
+}
+.icon-facebook:before {
+  content: "\"";
+}
+.icon-twitter:before {
+  content: "#";
+}
+.icon-google-plus:before {
+  content: "T";
+}
+.icon-chevron-up:before {
+  content: "$";
+}
+.icon-chevron-right:before {
+  content: "%";
+}
+.icon-chevron-left:before {
+  content: "&";
+}
+.icon-share:before {
+  content: "'";
+}
+.icon-facebook-1:before {
+  content: "(";
+}
+.icon-signal:before {
+  content: ")";
+}
+.icon-wifi-3:before {
+  content: "*";
+}
+.icon-wordpress:before {
+  content: "+";
+}
+.icon-alert:before {
+  content: ",";
+}
+.icon-check-1:before {
+  content: "-";
 }

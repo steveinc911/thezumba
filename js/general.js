@@ -4,6 +4,9 @@
 
 var gmap;
 var gmarker;
+var metroMarker;
+var busMarker;
+var iconBase = '/images/markers/';
 function initMap() {
   gmap = new google.maps.Map(document.getElementById('mapcontainer'), {
     center: {lat: 25.235125, lng: 55.297963},
@@ -12,11 +15,91 @@ function initMap() {
 	draggable: true
   });
 	
+  
+
   gmarker = new google.maps.Marker({
-    position: {lat: 25.235125, lng: 55.297963},
+    position: {lat: 25.235420, lng: 55.297963},
     map: gmap,
-    title: 'Zumba Festival 2016, Zabeel Park'
+	icon: iconBase + 'zumbafest.png',
+    title: 'Zumba Festival 2016, Zabeel Park',
+	labelContent: "Zumba Festival 2016, Zabeel Park",
+	labelAnchor: new google.maps.Point(22, 0),
+	labelClass: "labels", // the CSS class for the label
+	labelStyle: {opacity: 0.75}
   });
+  gmarker.setAnimation(google.maps.Animation.BOUNCE);
+	
+  metroMarker = new google.maps.Marker({
+    position: {lat: 25.233872, lng: 55.292050},
+    map: gmap,
+	icon: iconBase + 'train.png',
+    title: 'Al Jafiliya Metro Station',
+	labelContent: "Al Jafiliya Metro Station",
+	labelAnchor: new google.maps.Point(22, 0),
+	labelClass: "labels", // the CSS class for the label
+	labelStyle: {opacity: 0.75}
+  });
+	
+  busMarker=new google.maps.Marker({
+    position: {lat: 25.236992, lng: 55.294035},
+    map: gmap,
+	icon: iconBase + 'bus.png',
+    title: 'Department of Health, Bus Stop',
+	labelContent: "Department of Health, Bus Stop",
+	labelAnchor: new google.maps.Point(22, 0),
+	labelClass: "labels", // the CSS class for the label
+	labelStyle: {opacity: 0.75}
+  });
+	
+  carMarker=new google.maps.Marker({
+    position: {lat: 25.237969, lng: 55.297563},
+    map: gmap,
+	icon: iconBase + 'car.png',
+    title: 'Car Parking next to Gate 3',
+	labelContent: "Car Parking next to Gate 3",
+	labelAnchor: new google.maps.Point(22, 0),
+	labelClass: "labels", // the CSS class for the label
+	labelStyle: {opacity: 0.75}
+  });
+	
+  gate3Marker=new google.maps.Marker({
+    position: {lat: 25.236984, lng: 55.298972},
+    map: gmap,
+	icon: iconBase + 'gate3.png',
+    title: 'Gate 3',
+	labelContent: "Gate 3",
+	labelAnchor: new google.maps.Point(22, 0),
+	labelClass: "labels", // the CSS class for the label
+	labelStyle: {opacity: 0.75}
+  });
+	
+  gate1Marker=new google.maps.Marker({
+    position: {lat: 25.234667, lng: 55.294801},
+    map: gmap,
+	icon: iconBase + 'gate1.png',
+    title: 'Gate 1',
+	labelContent: "Gate 1",
+	labelAnchor: new google.maps.Point(22, 0),
+	labelClass: "labels", // the CSS class for the label
+	labelStyle: {opacity: 0.75}
+  });
+	
+  gate2Marker=new google.maps.Marker({
+    position: {lat: 25.237847, lng: 55.295418},
+    map: gmap,
+	icon: iconBase + 'gate2.png',
+    title: 'Gate 2',
+	labelContent: "Gate 2",
+	labelAnchor: new google.maps.Point(22, 0),
+	labelClass: "labels", // the CSS class for the label
+	labelStyle: {opacity: 0.75}
+  });
+	
+  
+  //gate1: 25.234467, 55.294801
+  //gate2: 25.237847, 55.295418
+  //gate3: 25.236984, 55.298972
+  //car: 25.237969, 55.297563
 }
 
 function showVenue(){
@@ -342,7 +425,7 @@ app.controller('EmailController',['$scope','$http',function EmailController($sco
 		
 		
 		if($scope.emailForm.$valid){
-			$(".get-email .fa-wifi").hide();
+			$(".get-email .icon-wifi-3").hide();
 			$(".get-email .loading-anim").show();
 			$scope.addClicked=true;
 			$http({

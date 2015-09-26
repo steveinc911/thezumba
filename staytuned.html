@@ -2,17 +2,18 @@
 .dialog-inner-container{
 	text-align:center;
 }
-.dialog-inner-container .fa-wifi{
+.dialog-inner-container .icon-wifi-3{
 	font-size:35px;
 }
 .dialog-inner-container p{
 	text-align:left;
+	font-family:Muli;
+	font-size:0.9em;
 }
 	
 .dialog-inner-container h1{
 	margin-top:10px;
 	text-align:center;
-	margin-bottom:30px;
 	color:#fff;
 	font-family:LeckerliOneRegular;
 	font-weight:500;
@@ -43,7 +44,9 @@
 }
 	
 
-
+input[type=email]{
+	padding-left:0.5em;
+}
 
 input[type=email]:focus{
 	-webkit-box-shadow: 0px 0px 3px 1px rgba(0,153,255,1);
@@ -57,6 +60,17 @@ input.ng-invalid-email, input.ng-invalid-required{
 	box-shadow: 0px 0px 1px 2px rgba(255,0,0,1) !important;
 }
 	
+	
+.message{
+	line-height:1.7em;
+	vertical-align:middle;
+	display:inline-block;
+	margin:1em 0 1em 0;
+}
+.message i{
+	line-height:1.2em;
+	vertical-align:middle;
+}
 </style>
 <div class="dialog-inner-container get-email">
 	<h1>Stay tuned</h1>
@@ -65,15 +79,15 @@ input.ng-invalid-email, input.ng-invalid-required{
 		  <div class="dot1"></div>
 		  <div class="dot2"></div>
 		</div>
-	</div><i class="fa fa-wifi"></i>
+	</div><i class="icon-wifi-3"></i>
 	<p>Tickets are not out yet! Drop us your email and we will contact you about ticket releases and exciting offers...</p>
 	<form name="emailForm" ng-controller="EmailController">
 		<input type="email" ng-model="email.text" required id="temail" style="width:100%" name="temail" class="input input-large" placeholder="abc@company.com" /><br/>
 		
-		<span ng-hide="emailForm.temail.$valid"><i class="fa fa-exclamation-circle"></i>Please enter your email...</span>
-		<span ng-show="emailForm.temail.$valid"><i class="fa fa-check-circle"></i> Perfect!</span>
+		<span ng-hide="emailForm.temail.$valid" class="message"><i class="icon-alert"></i>Please enter your email...</span>
+		<span ng-show="emailForm.temail.$valid" class="message"><i class="icon-check-1"></i> Perfect!</span>
 		
-		<br/><br/>
+		<br/>
 		
 		<div class="ngdialog-buttons">
 			<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="addEmail()" ng-class="{disabled:addClicked}" ng-disabled="addClicked">Notify me</button>
@@ -83,7 +97,7 @@ input.ng-invalid-email, input.ng-invalid-required{
 </div>
 <div class="dialog-inner-container thank-you">
 	<h1>Thank you</h1>
-	<i class="fa fa-wifi"></i>
+	<i class="icon-wifi-3"></i>
 	<p>We will update you as soon as tickets are out.</p><br/>
 	<div class="ngdialog-buttons">
 		<button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog(0)">Close</button>

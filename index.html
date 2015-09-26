@@ -26,7 +26,6 @@
 <link rel="stylesheet" href="node_modules/ng-dialog/css/ngDialog.css">
 	<link rel="stylesheet" href="node_modules/ng-dialog/css/ngDialog-theme-default.min.css">-->
 <link rel="stylesheet" type="text/css" href="css/allcss.css">
-<link rel="stylesheet" type="text/css" href="css/style.css">
 	
 
 <!-- BOC: required for less -->
@@ -97,13 +96,13 @@
 			</nav>
 		</div>
 		<div class="mobile">
-			<button class="btn btn-tickets">BUY TICKETS</button>
+			<button class="btn btn-tickets" ng-click="ctrl.showDialog('staytuned.html')">BUY TICKETS</button>
 			<button class="btn" ng-click="ctrl.showMenu()">MENU</button>
 		</div>
 	</header>
 	<a scroll id="scroll-top-orb" href="#home" ng-class="scrollTopClass" scroll-to="header" 
     duration="500" easing="false" >
-			<b><i class="fa fa-angle-up"></i>
+			<b><i class="icon-chevron-up"></i>
 <br>TOP</b>
 	</a>
 	<section id="banner"  ng-style="resizeHeight(50,0,0,0)" resize>
@@ -111,7 +110,7 @@
 	</section>
 	<section id="event-details-overlay"  ng-style="resizeHeight(42,0,0,1)" resize>
 		<div class="no-of-likes">
-			<i class="fa fa-facebook"></i><b>--</b> likes
+			<i class="icon-facebook"></i><b>--</b> likes
 		</div>
 		<div class="caption fly-right">
 			<small>JOIN MORE THAN 2000 PEOPLE</small><br/>AT THE <em>BIGGEST</em><br/> <b>ZUMBA FESTIVAL</b> IN <b>DUBAI</b>
@@ -222,6 +221,50 @@ kaleidoscope of colors, dance and fun.
 			</div>
 		</div>
 	</section>
+	<section id="travel" class="section">
+		<h1 class="title">
+			Ways to get there
+		</h1>
+		<div class="container">
+			<div class="travel-icons">
+				<section class="metro">
+					<span>
+						<i class="icon-bullet-train-tunneled"></i>
+					</span>
+				</section>
+				<section class="bus type1">
+					<span>
+						<i class="icon-bus"></i>
+					</span>
+				</section>
+				<section class="car">
+					<span>
+						<i class="icon-car-side"></i>
+					</span>
+				</section>
+			</div>
+			<div class="travel-content">
+				<section class="metro">
+					<span>
+						<h2>By metro</h2>
+						<p>Arrive at Al Jafiliya Metro Station, Zabeel park will be just a 5 minute walk away. Enter through Gate no. 1</p>
+					</span>
+				</section>
+				<section class="bus type1">
+					<span>
+						<h2>By bus</h2>
+						<p>Get off at the Department of health bus stop. Which is a 2 - 3 minute walk to Gate no. 2. The buses that ply on this route are, Bus no. 10, 21, 27, 29, 32C, 61, 88, C15 and C26.</p>
+					</span>
+				</section>
+				<section class="car">
+					<span>
+						<h2>By car</h2>
+						<p>Take the Sheikh Rashid Road, when you arrive at Zabeel Park enter through Gate no. 3</p>
+					</span>
+				</section>
+			</div>
+		</div>
+	</section>
 	<section id="sponsors" class="section">
 		<h1>Sponsors &amp; Partners</h1>
 		<ul>
@@ -254,7 +297,8 @@ kaleidoscope of colors, dance and fun.
 	<!--
 Copyright: <a href='http://www.123rf.com/profile_thoermer'>thoermer / 123RF Stock Photo</a>
 -->
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQQotzxSCobatISPJxd_nUlMGCw0vzizk&callback=initMap&sensor=false"></script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXnJvicDbYXPwfbatohOiwQdTtvBimT2w&callback=initMap&sensor=false"></script>
 <script> 
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
