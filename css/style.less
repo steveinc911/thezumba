@@ -12,6 +12,34 @@ body
 	color:#505050;
 }
 
+
+.fancy {
+  line-height: 0.5;
+  text-align: center;
+}
+.fancy b {
+  display: inline-block;
+  position: relative;  
+}
+.fancy b:before,
+.fancy b:after {
+  content: "";
+  position: absolute;
+  height: 5px;
+  border-bottom: 1px solid #c0c0c0;
+  top: 0;
+  width: 20px;
+}
+.fancy b:before {
+  right: 100%;
+  margin-right: 15px;
+}
+.fancy b:after {
+  left: 100%;
+  margin-left: 15px;
+}
+
+
 .social-menu-container{
 	position:fixed;
 
@@ -108,11 +136,13 @@ header{
 		
 		
 		#sponsors-link{
+			margin-left:1em;
 			
 		}
 		
 		#tickets-link{
 			color:#d91b5c;
+			margin-left:1em;
 		}
 	}
 	
@@ -148,14 +178,20 @@ header{
 	background-size:cover;
 	position:fixed;
 	z-index:1;
+	background-repeat: no-repeat;
+	.girls-jump{
+		width:100%;
+	}
+	
 	/*top:9.6vw; /* 209/2172 */
 	
 }
 
 #event-details-overlay{
 	
-	position:relative;
+	position:fixed;
 	z-index:2;
+	width:100%;
 	
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&amp;0.8+0,0+50,0.8+100 */
 	background: -moz-linear-gradient(left,  rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%); /* FF3.6+ */
@@ -196,6 +232,22 @@ header{
 		b{
 			padding-top: 0.05em;
 			display:inline-block;
+		}
+	}
+	
+	.hashtag{
+		color: rgba(255,255,255,0.83);
+		font-family: Oswald;
+		font-size: 2em;
+		left: 20%;
+		position: absolute;
+		top: 54%;
+		em{
+			font-size:0.8em;
+			display:block;
+		}
+		b{
+			display:block;
 		}
 	}
 	
@@ -353,10 +405,12 @@ header{
 
 .timeline > li > .timeline-panel::before{
 	top:30px;
+	border:none;
 }
 
 .timeline > li > .timeline-panel::after{
 	top:30px;
+	border:none;
 }
 
 .timeline > li > .timeline-badge{
@@ -368,20 +422,29 @@ header{
 	.edge1{
 		display:none;
 	}
-	
+	margin-top:-5px;
 	background-color:#fcf1ff;
-	background-size:contain;
+	background-image:url('../images/dubaibg.jpg');
+	background-attachment: fixed;
+	background-size:cover;
+	border-top:10px solid #92278f;
 	h1{
 		float:none;
 		margin-top:0px;
 	}
 	
+	.timeline{
+		opacity:1;
+	}
+	
 	.timeline-badge{
+		color:#c0c0c0;
 		-webkit-box-shadow: -1px -1px 6px 0px rgba(0,0,0,0.75);
 		-moz-box-shadow: -1px -1px 6px 0px rgba(0,0,0,0.75);
 		box-shadow: -1px -1px 6px 0px rgba(0,0,0,0.75);
 		border:2px solid #fff;
-		background-color:#932890 !important;
+		background-color:#fff !important;
+	
 	}
 	
 	.em{
@@ -392,7 +455,9 @@ header{
 	
 	.timeline-panel{
 		
-		background-color:#fff;
+		background-color:transparent;
+		box-shadow:none;
+		border:none;
 		text-align:center;
 		padding:0px !important;
 		
@@ -401,7 +466,7 @@ header{
 				width:95%;
 				display:inline-block;
 				&:nth-child(1n+2){
-					border-top:1px solid #c0c0c0;
+					/*border-top:1px solid #c0c0c0;*/
 					padding-top:5px;
 				}
 			}
@@ -414,8 +479,10 @@ header{
 			position:relative;
 			.timeline-title{
 				padding:35px 0 0 0;
-				color:#909090;
-				font-size:1em;
+				color:#fff;
+				font-size:1.5em;
+				text-shadow: 3px 3px 0 rgba(0,0,0,0.75), -1px -1px 0 rgba(0,0,0,0.75), 1px -1px 0 rgba(0,0,0,0.75), -1px 1px 0 rgba(0,0,0,0.75), 1px 1px 0 rgba(0,0,0,0.75);
+				font-family:Oswald;
 			}
 
 			.text-muted{
@@ -426,12 +493,12 @@ header{
 				position:absolute;
 				top:0px;
 				width:100%;
-				background-color:#D92;
+				background-color:#216798;
 				.glyphicon-time{
 					display:none;
 				}
 
-				color:#fff;
+				color:#dfdfdf;
 			}
 
 			p{
@@ -471,7 +538,8 @@ header{
 		-webkit-column-rule: 1px dotted #c0c0c0; /* Chrome, Safari, Opera */
 		-moz-column-rule: 1px dotted #c0c0c0; /* Firefox */
 		column-rule: 1px dotted #c0c0c0;
-		padding-bottom:20px;
+		padding-bottom:40px;
+		padding-top:20px;
 		text-align:left;
 	}
 	
@@ -496,7 +564,21 @@ header{
 	padding-top:0px;
 	position:relative;
 	border-top:5px solid #932890;
-	border-bottom:5px solid #932890;
+	border-bottom:5px solid #a5a5a5;
+	
+	.labels {
+	   color: red;
+	   background-color: white;
+	   font-family: Muli;
+	   font-size: 10px;
+	   font-weight: bold;
+	   text-align: center;
+	   width: 60px;     
+	   border: 2px solid black;
+	   white-space: nowrap;
+		z-index:1000;
+		position:relative;
+	 }
 	
 	.google-map-container{
 		position:relative;
@@ -653,6 +735,11 @@ header{
 	
 }
 
+#become-sponsors{
+	text-align:center;
+}
+
+
 #sponsors{
 	display:none;
 	text-align:center;
@@ -786,7 +873,7 @@ footer{
 #travel{
 	padding-top:0 !important;
 	h1{
-		background-color:#932890;
+		background-color:#a5a5a5;
 		font-family:Oswald;
 		color:#fff;
 		text-shadow: none;
@@ -805,9 +892,38 @@ footer{
 			width:32%;
 			text-align:center;
 			padding:30px 0 0 0;
+			border-width:0 5% 0 5%;
+			border-color:#fff;
+			border-style:solid;
 			
-			&.type1{
-				background-color:#fcf1ff;
+			&.bus{
+				background-color:transparent;
+				
+				
+		        
+				
+				span{
+					background-color:#ed217c;
+				}
+			}
+			&.car{
+				background-color:transparent;
+				
+				
+				
+				span{
+					background-color:#0e76bc;
+				}
+			}
+			&.metro{
+				background-color:transparent;
+				
+				
+				
+				
+				span{
+					background-color:#63d873;
+				}
 			}
 			span{
 				width:100px;
@@ -846,21 +962,42 @@ footer{
 			position:relative;
 			min-height:300px;
 			vertical-align:top;
+			
+			&.bus{
+				span{
+					border:1px solid #ed217c;
+				}
+			}
+
+			&.car{
+				span{
+					border:1px solid #0e76bc;
+				}
+			}
+
+			&.metro{
+				span{
+					border:1px solid #63d873;
+				}
+			}
+			
 			span{
 				
 				width:90%;
 				background-color:#fff;
-				border:1px solid #fcf1ff;
+				
 				display:inline-block;
 				min-height:300px;
 				padding-top:40px;
 				padding-left: 5%;
     			padding-right: 5%;
 				
+				
+				
 				h2{
 					text-transform:uppercase;
 					font-size:1em;
-					
+					font-family:Oswald;
 					
 				}
 				p{
@@ -985,19 +1122,7 @@ footer{
 	}
 }
 
-#map .labels {
-   color: red;
-   background-color: white;
-   font-family: Muli;
-   font-size: 10px;
-   font-weight: bold;
-   text-align: center;
-   width: 60px;     
-   border: 2px solid black;
-   white-space: nowrap;
-	z-index:1000;
-	position:relative;
- }
+
 
 @media screen and (min-width: 768px){
 	header{
@@ -1117,11 +1242,35 @@ footer{
 }
 
 @media screen and (max-width: 480px){
+	#banner{
+		height:300px !important;
+	}
 	#event-details-overlay{
+		height:300px !important;
 		.caption{
 			display:none
 		}
 		
+		.hashtag{
+			left:35%;
+		}
+		
+		.tagline{
+			margin-top: 210px;
+    		width: 190px;
+		}
+		
+		.details{
+			width:208px;
+		}
+		
+		.no-of-likes{
+			top: 50px;
+		}
+	}
+	
+	#event-other-info{
+		margin-top:300px !important;
 	}
 	
 	#travel{

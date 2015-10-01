@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" id="rt"  ng-app="Promo" ng-controller="AppController as ctrl">
+<html lang="en"  ng-app="Promo">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -55,7 +55,7 @@
 <script src="js/general.js"></script>	
 <title>Zumba Festival DXB 2016 - Zabeel Park, Dubai</title>
 </head>
-<body id="body">
+<body id="body" ng-controller="AppController as ctrl">
 
 <div class="container-fill">
 	<div class="social-menu-container" ng-style="resizeHeight(0,9.6,0,0)" resize>
@@ -68,21 +68,17 @@
 	<header id="header" ng-style="resizeHeight(9.6,0,0,0)" resize>
 		<div class="container menu">
 			<div class="logo-container">
-				<a href="#home" scroll-to="header" 
-		duration="500" easing="false" id="logo" alt="Zumba Festival DXB 2016" callback-before="ctrl.hideMobileMenu()">
+				<a href="#banner" class="smoothscroll" id="logo" alt="Zumba Festival DXB 2016">
 					<b>Zumba Festival DXB 2016</b>
 					<img src="images/logo.png" id="logo-img" />
 				</a>
 			</div>
 			<nav>
-				<a href="#schedule" scroll-to="schedule" 
-    duration="500" easing="false" id="schedule-link" callback-before="ctrl.hideMobileMenu()" class="sz1"><i class="icon-clock"></i><b>Schedule</b></a>
-				<a href="#media-title" alt="not ready" scroll-to="media-title" 
-    duration="500" easing="false" id="media-link" callback-before="ctrl.hideMobileMenu()" class="sz2"><i class="icon-camera"></i><b>Media</b></a>
-				<a href="#about" scroll-to="about" 
-    duration="500" easing="false" id="about-link" callback-before="ctrl.hideMobileMenu()" class="sz1"><i class="icon-question"></i><b>About</b></a>
-				<a href="#venue" scroll-to="map" 
-    duration="500" easing="false" id="map-link" callback-before="ctrl.hideMobileMenu()" class="sz1"><i class="icon-location"></i><b>Venue</b></a>
+				<a href="#schedule" id="schedule-link" callback-before="ctrl.hideMobileMenu()" class="sz1 smoothscroll"><i class="icon-clock"></i><b>Schedule</b></a>
+				<a href="#media-title" id="media-link" callback-before="ctrl.hideMobileMenu()" class="sz2 smoothscroll"><i class="icon-camera"></i><b>Media</b></a>
+				<a href="#about" id="about-link" callback-before="ctrl.hideMobileMenu()" class="sz1 smoothscroll"><i class="icon-question"></i><b>About</b></a>
+				<a href="#map" id="map-link" callback-before="ctrl.hideMobileMenu()" class="sz1 smoothscroll"><i class="icon-location"></i><b>Venue</b></a>
+				<a href="#become-sponsors" id="sponsors-link" callback-before="ctrl.hideMobileMenu()" class="sz1 smoothscroll"><i class="icon-sun"></i><b>Sponsors 2016</b></a>
 				<a href="#" ng-click="ctrl.showDialog('staytuned.html')"
     id="tickets-link" class="sz1"><i class="icon-tag"></i><b>Buy Tickets</b></a>
 				
@@ -100,27 +96,30 @@
 			<button class="btn" ng-click="ctrl.showMenu()">MENU</button>
 		</div>
 	</header>
-	<a scroll id="scroll-top-orb" href="#home" ng-class="scrollTopClass" scroll-to="header" 
-    duration="500" easing="false" >
+	<a scroll id="scroll-top-orb" href="#banner" ng-class="scrollTopClass" >
 			<b><i class="icon-chevron-up"></i>
 <br>TOP</b>
 	</a>
 	<section id="banner"  ng-style="resizeHeight(50,0,0,0)" resize>
 		
 	</section>
-	<section id="event-details-overlay"  ng-style="resizeHeight(42,0,0,1)" resize>
+	<section id="event-details-overlay"  ng-style="resizeHeight(42,0,0,0)" resize>
 		<div class="no-of-likes">
 			<i class="icon-facebook"></i><b>--</b> likes
 		</div>
+		<div class="hashtag">
+			<em>{{ daysToGo }}days {{ hoursToGo }}hrs {{ minutesToGo }}mins {{ secondsToGo }}secs</em>
+			<b>#ZumbaFestDXB</b>
+		</div>
 		<div class="caption fly-right">
-			<small>JOIN MORE THAN 2000 PEOPLE</small><br/>AT THE <em>BIGGEST</em><br/> <b>ZUMBA FESTIVAL</b> IN <b>DUBAI</b>
+			<small>JOIN MORE THAN 5000 PEOPLE</small><br/>AT THE <em>BIGGEST</em><br/> <b>ZUMBA FESTIVAL</b> IN <b>DUBAI</b>
 		</div>
 		<img src="images/tagline.png" class="tagline fly-left" alt="Dance! like never before" />
 		<div class="details">
 			January 2016
 		</div>
 	</section>
-	<section id="event-other-info">
+	<section id="event-other-info"  ng-style="resizeHeight(0,42,0,1)">
 		<img src="images/powderedge.png" class="edge1" />
 		<div class="content">
 			<div class="container">
@@ -232,7 +231,7 @@ kaleidoscope of colors, dance and fun.
 						<i class="icon-bullet-train-tunneled"></i>
 					</span>
 				</section>
-				<section class="bus type1">
+				<section class="bus">
 					<span>
 						<i class="icon-bus"></i>
 					</span>
@@ -246,32 +245,39 @@ kaleidoscope of colors, dance and fun.
 			<div class="travel-content">
 				<section class="metro">
 					<span>
-						<h2>By metro</h2>
+						<h2 class="fancy"><b>By metro</b></h2>
 						<p>Arrive at Al Jafiliya Metro Station, Zabeel park will be just a 5 minute walk away. Enter through Gate no. 1</p>
 					</span>
 				</section>
 				<section class="bus type1">
 					<span>
-						<h2>By bus</h2>
+						<h2 class="fancy"><b>By bus</b></h2>
 						<p>Get off at the Department of health bus stop. Which is a 2 - 3 minute walk to Gate no. 2. The buses that ply on this route are, Bus no. 10, 21, 27, 29, 32C, 61, 88, C15 and C26.</p>
 					</span>
 				</section>
 				<section class="car">
 					<span>
-						<h2>By car</h2>
+						<h2 class="fancy"><b>By car</b></h2>
 						<p>Take the Sheikh Rashid Road, when you arrive at Zabeel Park enter through Gate no. 3</p>
 					</span>
 				</section>
 			</div>
 		</div>
 	</section>
+	<section id="become-sponsors" class="section">
+		<div class="container">
+			<h1>Be our partner/sponsor</h1>
+			<p>For detailed information about the event, partnership, sponsorship packages, brand activation and application as a vendor.</p>
+			<a href="ProposalZumbaFestDXB.pdf" class="btn btn-primary">Download PDF</a><br/><br/>
+		</div>
+	</section>
 	<section id="sponsors" class="section">
-		<h1>Sponsors &amp; Partners</h1>
-		<ul>
-			<li><b>Kelloggs</b><img src="images/sponsors/kellogs.png" /></li>
-			<li><b>Tropicana</b><img src="images/sponsors/tropicana.png" /></li>
-			<li><b>Ultimate Nutrition</b><img src="images/sponsors/ultimatenutrition.png" /></li>
-		</ul>
+		<div class="container">
+			<h1>Be our sponsor/partner</h1>
+			
+			<a href="ProposalZumbaFestDXB.pdf" class="btn btn-primary">Download PDF</a>
+			
+		</div>
 	</section>
 	<footer>
 		<img src="images/powderedge_footer.png" class="edge1" />
@@ -298,7 +304,7 @@ kaleidoscope of colors, dance and fun.
 Copyright: <a href='http://www.123rf.com/profile_thoermer'>thoermer / 123RF Stock Photo</a>
 -->
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXnJvicDbYXPwfbatohOiwQdTtvBimT2w&callback=initMap&sensor=false"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQQotzxSCobatISPJxd_nUlMGCw0vzizk&callback=initMap&sensor=false"></script>
 <script> 
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

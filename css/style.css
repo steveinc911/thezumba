@@ -5,6 +5,31 @@ body {
   overflow-y: hidden;
   color: #505050;
 }
+.fancy {
+  line-height: 0.5;
+  text-align: center;
+}
+.fancy b {
+  display: inline-block;
+  position: relative;
+}
+.fancy b:before,
+.fancy b:after {
+  content: "";
+  position: absolute;
+  height: 5px;
+  border-bottom: 1px solid #c0c0c0;
+  top: 0;
+  width: 20px;
+}
+.fancy b:before {
+  right: 100%;
+  margin-right: 15px;
+}
+.fancy b:after {
+  left: 100%;
+  margin-left: 15px;
+}
 .social-menu-container {
   position: fixed;
   width: 100%;
@@ -70,8 +95,12 @@ header nav a.disabled {
   color: #c0c0c0;
   cursor: not-allowed;
 }
+header nav #sponsors-link {
+  margin-left: 1em;
+}
 header nav #tickets-link {
   color: #d91b5c;
+  margin-left: 1em;
 }
 .logo-container {
   display: table-cell;
@@ -97,11 +126,16 @@ header nav #tickets-link {
   background-size: cover;
   position: fixed;
   z-index: 1;
+  background-repeat: no-repeat;
   /*top:9.6vw; /* 209/2172 */
 }
+#banner .girls-jump {
+  width: 100%;
+}
 #event-details-overlay {
-  position: relative;
+  position: fixed;
   z-index: 2;
+  width: 100%;
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&amp;0.8+0,0+50,0.8+100 */
   background: -moz-linear-gradient(left, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8) 100%);
   /* FF3.6+ */
@@ -145,6 +179,21 @@ header nav #tickets-link {
 #event-details-overlay .no-of-likes b {
   padding-top: 0.05em;
   display: inline-block;
+}
+#event-details-overlay .hashtag {
+  color: rgba(255, 255, 255, 0.83);
+  font-family: Oswald;
+  font-size: 2em;
+  left: 20%;
+  position: absolute;
+  top: 54%;
+}
+#event-details-overlay .hashtag em {
+  font-size: 0.8em;
+  display: block;
+}
+#event-details-overlay .hashtag b {
+  display: block;
 }
 #event-details-overlay .caption {
   font-family: Oswald;
@@ -278,17 +327,23 @@ header nav #tickets-link {
 }
 .timeline > li > .timeline-panel::before {
   top: 30px;
+  border: none;
 }
 .timeline > li > .timeline-panel::after {
   top: 30px;
+  border: none;
 }
 .timeline > li > .timeline-badge {
   top: 21px;
 }
 #schedule {
   padding-bottom: 80px;
+  margin-top: -5px;
   background-color: #fcf1ff;
-  background-size: contain;
+  background-image: url('../images/dubaibg.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+  border-top: 10px solid #92278f;
 }
 #schedule .edge1 {
   display: none;
@@ -297,18 +352,24 @@ header nav #tickets-link {
   float: none;
   margin-top: 0px;
 }
+#schedule .timeline {
+  opacity: 1;
+}
 #schedule .timeline-badge {
+  color: #c0c0c0;
   -webkit-box-shadow: -1px -1px 6px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: -1px -1px 6px 0px rgba(0, 0, 0, 0.75);
   box-shadow: -1px -1px 6px 0px rgba(0, 0, 0, 0.75);
   border: 2px solid #fff;
-  background-color: #932890 !important;
+  background-color: #fff !important;
 }
 #schedule .em .timeline-title {
   font-weight: 600;
 }
 #schedule .timeline-panel {
-  background-color: #fff;
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
   text-align: center;
   padding: 0px !important;
 }
@@ -317,7 +378,7 @@ header nav #tickets-link {
   display: inline-block;
 }
 #schedule .timeline-panel ul li:nth-child(1n+2) {
-  border-top: 1px solid #c0c0c0;
+  /*border-top:1px solid #c0c0c0;*/
   padding-top: 5px;
 }
 #schedule .timeline-panel .timeline-heading {
@@ -326,8 +387,10 @@ header nav #tickets-link {
 }
 #schedule .timeline-panel .timeline-heading .timeline-title {
   padding: 35px 0 0 0;
-  color: #909090;
-  font-size: 1em;
+  color: #fff;
+  font-size: 1.5em;
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.75), -1px -1px 0 rgba(0, 0, 0, 0.75), 1px -1px 0 rgba(0, 0, 0, 0.75), -1px 1px 0 rgba(0, 0, 0, 0.75), 1px 1px 0 rgba(0, 0, 0, 0.75);
+  font-family: Oswald;
 }
 #schedule .timeline-panel .timeline-heading .text-muted {
   font-family: DIGITALDREAMFAT;
@@ -337,8 +400,8 @@ header nav #tickets-link {
   position: absolute;
   top: 0px;
   width: 100%;
-  background-color: #D92;
-  color: #fff;
+  background-color: #216798;
+  color: #dfdfdf;
 }
 #schedule .timeline-panel .timeline-heading .text-muted .glyphicon-time {
   display: none;
@@ -374,7 +437,8 @@ header nav #tickets-link {
   -moz-column-rule: 1px dotted #c0c0c0;
   /* Firefox */
   column-rule: 1px dotted #c0c0c0;
-  padding-bottom: 20px;
+  padding-bottom: 40px;
+  padding-top: 20px;
   text-align: left;
 }
 #about .about-zumba-girl {
@@ -391,7 +455,20 @@ header nav #tickets-link {
   padding-top: 0px;
   position: relative;
   border-top: 5px solid #932890;
-  border-bottom: 5px solid #932890;
+  border-bottom: 5px solid #a5a5a5;
+}
+#map .labels {
+  color: red;
+  background-color: white;
+  font-family: Muli;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  width: 60px;
+  border: 2px solid black;
+  white-space: nowrap;
+  z-index: 1000;
+  position: relative;
 }
 #map .google-map-container {
   position: relative;
@@ -518,6 +595,9 @@ header nav #tickets-link {
 #media .gallery-container .ng-gallery .ng-scope .img-overlay i:hover {
   color: #932890;
 }
+#become-sponsors {
+  text-align: center;
+}
 #sponsors {
   display: none;
   text-align: center;
@@ -637,11 +717,11 @@ footer .container .copyright img {
   padding-top: 0 !important;
 }
 #travel h1 {
-  background-color: #932890;
+  background-color: #a5a5a5;
   font-family: Oswald;
   color: #fff;
   text-shadow: none;
-  font-size: 2em;
+  font-size: 1.5em;
   text-transform: uppercase;
   margin-top: -1px;
   padding-bottom: 0.3em;
@@ -656,9 +736,27 @@ footer .container .copyright img {
   width: 32%;
   text-align: center;
   padding: 30px 0 0 0;
+  border-width: 0 5% 0 5%;
+  border-color: #fff;
+  border-style: solid;
 }
-#travel .travel-icons section.type1 {
-  background-color: #fcf1ff;
+#travel .travel-icons section.bus {
+  background-color: transparent;
+}
+#travel .travel-icons section.bus span {
+  background-color: #ed217c;
+}
+#travel .travel-icons section.car {
+  background-color: transparent;
+}
+#travel .travel-icons section.car span {
+  background-color: #0e76bc;
+}
+#travel .travel-icons section.metro {
+  background-color: transparent;
+}
+#travel .travel-icons section.metro span {
+  background-color: #63d873;
 }
 #travel .travel-icons section span {
   width: 100px;
@@ -696,10 +794,18 @@ footer .container .copyright img {
   min-height: 300px;
   vertical-align: top;
 }
+#travel .travel-content section.bus span {
+  border: 1px solid #ed217c;
+}
+#travel .travel-content section.car span {
+  border: 1px solid #0e76bc;
+}
+#travel .travel-content section.metro span {
+  border: 1px solid #63d873;
+}
 #travel .travel-content section span {
   width: 90%;
   background-color: #fff;
-  border: 1px solid #fcf1ff;
   display: inline-block;
   min-height: 300px;
   padding-top: 40px;
@@ -709,6 +815,7 @@ footer .container .copyright img {
 #travel .travel-content section span h2 {
   text-transform: uppercase;
   font-size: 1em;
+  font-family: Oswald;
 }
 #travel .travel-content section span p {
   text-align: left;
@@ -784,19 +891,6 @@ footer .container .copyright img {
     border: none;
     position: absolute;
   }
-}
-#map .labels {
-  color: red;
-  background-color: white;
-  font-family: Muli;
-  font-size: 10px;
-  font-weight: bold;
-  text-align: center;
-  width: 60px;
-  border: 2px solid black;
-  white-space: nowrap;
-  z-index: 1000;
-  position: relative;
 }
 @media screen and (min-width: 768px) {
   header .mobile {
@@ -884,8 +978,30 @@ footer .container .copyright img {
   }
 }
 @media screen and (max-width: 480px) {
+  #banner {
+    height: 300px !important;
+  }
+  #event-details-overlay {
+    height: 300px !important;
+  }
   #event-details-overlay .caption {
     display: none;
+  }
+  #event-details-overlay .hashtag {
+    left: 35%;
+  }
+  #event-details-overlay .tagline {
+    margin-top: 210px;
+    width: 190px;
+  }
+  #event-details-overlay .details {
+    width: 208px;
+  }
+  #event-details-overlay .no-of-likes {
+    top: 50px;
+  }
+  #event-other-info {
+    margin-top: 300px !important;
   }
   #travel {
     display: none;

@@ -2,11 +2,14 @@
  * 
  */
 
+
+
 var gmap;
 var gmarker;
 var metroMarker;
 var busMarker;
 var iconBase = '/images/markers/';
+
 function initMap() {
   gmap = new google.maps.Map(document.getElementById('mapcontainer'), {
     center: {lat: 25.235125, lng: 55.297963},
@@ -367,7 +370,9 @@ app.config(function($stateProvider) {
 
 	  
 	function loadAlbumData(){
-		var _albumId = '1490323137928549';
+		/*a.1490323137928549.1073741827.1490322427928620
+		a.1495057844121745.1073741829.1490322427928620*/
+		var _albumId = '1495057844121745';
 		//var fbPhotoreqRes = new FBAlbumPhotosReqRes(_albumId);
 		var fbPhotoreqRes = new FetchAlbumPhotos(_albumId);
 		fbPhotoreqRes.CallBackFunction = function(ImageArray){console.log(ImageArray);};
@@ -416,6 +421,8 @@ app.config(function($stateProvider) {
 /* EOC: FB Gallery */
 
 app.controller('EmailController',['$scope','$http',function EmailController($scope,$http){
+	
+	
 	$scope.email = {
 		text: ''
 	};
@@ -453,6 +460,30 @@ app.controller('AppController', ['$scope','$rootScope','$document','$timeout','$
 	
 	 
 	var self = this;
+	$rootScope.utcOffset=(0-(new Date().getTimezoneOffset()));
+	$rootScope.utcEventDate=new Date('Jan 16, 2016 6:00');
+	
+	
+	
+	$rootScope.countDown=function(){
+		
+		$rootScope.rgEventDate=new Date($rootScope.utcEventDate.getTime()+($rootScope.utcOffset*60000));
+		
+	
+		$rootScope.datediff=($rootScope.rgEventDate-new Date());
+		
+		
+		$rootScope.daysToGo=Math.floor($rootScope.datediff/(1000*60*60*24));
+		//alert(datediff+'-'+self.daysToGo*1000*60*60*24+'='+(datediff-(self.daysToGo*1000*60*60*24)));
+		$rootScope.hoursToGo=Math.floor((($rootScope.datediff)-($rootScope.daysToGo*1000*60*60*24))/(1000*60*60));
+		$rootScope.minutesToGo=Math.floor(($rootScope.datediff-($rootScope.daysToGo*1000*60*60*24)-($rootScope.hoursToGo*1000*60*60))/(1000*60));
+
+		$rootScope.secondsToGo=Math.floor(($rootScope.datediff-($rootScope.daysToGo*1000*60*60*24)-($rootScope.hoursToGo*1000*60*60)-($rootScope.minutesToGo*1000*60))/(1000));
+		
+		$rootScope.$apply();
+	};
+	
+	setInterval($rootScope.countDown,1000);
 	
 	
 	
@@ -481,7 +512,7 @@ app.controller('AppController', ['$scope','$rootScope','$document','$timeout','$
 		var url;
 		switch(socialNetwork){
 			case 'twitter':
-				url="https://twitter.com/intent/tweet?text=Join%20more%20than%202000%20people%20at%20the%20BIGGEST%20Zumba%20Festival%20in%20Dubai&url=http%3A%2F%2Fwww.zumbafestdxb.com&via=ZumbaFestDXB";
+				url="https://twitter.com/intent/tweet?text=Join%20more%20than%202000%20people%20at%20the%20BIGGEST%20Zumba%20Festival%20in%20Dubai%20%23ZumbaFestDXB&url=http%3A%2F%2Fwww.zumbafestdxb.com&via=ZumbaFestDXB";
 				break;
 			case 'gplus':
 				url="https://plus.google.com/share?url=http://www.zumbafestdxb.com";
@@ -528,7 +559,7 @@ app.controller('AppController', ['$scope','$rootScope','$document','$timeout','$
 	};
 	
 	$rootScope.loadFBData=function(){
-		var _albumId = '1490323137928549';
+		var _albumId = '1495057844121745';
 		//var fbPhotoreqRes = new FBAlbumPhotosReqRes(_albumId);
 		var fbPhotoreqRes = new FetchAlbumPhotos(_albumId);
 		fbPhotoreqRes.CallBackFunction = function(ImageArray){
@@ -599,17 +630,31 @@ app.directive('resize', function ($window) {
 				else{
 					scope.mTop=marginTop;
 				}
-				if(mode==0){
-					return { 
-						'height': (newValue.w*percentH/100) + 'px',
-						'top': scope.mTop + 'px'
-					};
+				if(percentH>0){
+					if(mode==0){
+						return { 
+							'height': (newValue.w*percentH/100) + 'px',
+							'top': scope.mTop + 'px'
+						};
+					}
+					else{
+						return { 
+							'height': (newValue.w*percentH/100) + 'px',
+							'margin-top': scope.mTop + 'px'
+						};
+					}
 				}
 				else{
-					return { 
-						'height': (newValue.w*percentH/100) + 'px',
-						'margin-top': scope.mTop + 'px'
-					};
+					if(mode==0){
+						return { 
+							'top': scope.mTop + 'px'
+						};
+					}
+					else{
+						return { 
+							'margin-top': scope.mTop + 'px'
+						};
+					}
 				}
 				
                 
@@ -632,12 +677,33 @@ app.directive("scroll", function ($window) {
     return function(scope, element, attrs) {
 		
         angular.element($window).bind("scroll", function() {
-             if (this.pageYOffset >= 200) {
-                 scope.scrollTopClass = 'show';
+             if (this.pageYOffset >= 500) {
+                 scope.scrollTopClass = 'show smoothscroll';
              } else {
-                 scope.scrollTopClass = 'hide';
+                 scope.scrollTopClass = 'hide smoothscroll';
+				 bannerBgY=Math.round(this.pageYOffset/8);
+				 bannerFgY=Math.round(this.pageYOffset/3);
+				 
+				 $("#banner").css({
+					'background-position':'0 -'+bannerBgY+'px'
+				 });
+
+				 $("#event-details-overlay").css({
+					'margin-top':'-'+bannerFgY+'px' 
+				 });
+
+				
              }
-            scope.$apply();
+			
+			if(this.pageYOffset<$("#media").offset().top){
+				scheduleBgY=Math.round((this.pageYOffset)/8);
+				 $("#schedule").css({
+					'background-position':'0 -'+scheduleBgY+'px'
+				 });
+			}
+			
+			 
+             scope.$apply();
         });
     };
 });
@@ -647,7 +713,7 @@ app.directive("scroll", function ($window) {
 window.onload=function(){
 	w=250*document.querySelectorAll(".ng-gallery img").length;
 	//document.querySelector(".ng-gallery").style.width=w+"px";
-	angular.element(document.getElementById('rt')).scope().loadFBData();
+	angular.element(document.getElementById('body')).scope().loadFBData();
 	
 	
 	
@@ -656,6 +722,31 @@ window.onload=function(){
 	$("body").css({'overflow-y':'scroll'});
 	$(".caption").addClass("bounce-in");
 	$(".tagline").addClass("bounce-in");
+	
+	
+	$('body').on('click','.smoothscroll',function(e) {
+		e.preventDefault();
+		if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+		  var target = $(this.hash);
+		  target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+			
+		  if (target.length) {
+			  if(this.hash.slice(1)=='banner'){
+				  iScrollY=0;
+			  }
+			  else{
+				  iScrollY=target.offset().top-(document.querySelectorAll("header")[0]).offsetHeight;
+			  }
+			
+			$('html,body').animate({
+			  scrollTop: iScrollY
+			}, 1000);
+			document.querySelector(".menu").removeAttribute("style");
+			return false;
+		  }
+		}
+	});
+	
 	
 	
 };

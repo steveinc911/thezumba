@@ -152,9 +152,6 @@
 .icon-location-1:before {
   content: "M";
 }
-.icon-crown-king-streamline:before {
-  content: "O";
-}
 .icon-painting-pallet-streamline:before {
   content: "N";
 }
@@ -191,20 +188,11 @@
 .icon-book-read-streamline:before {
   content: "0";
 }
-.icon-map-pin-streamline:before {
-  content: "1";
-}
-.icon-clock-streamline-time:before {
-  content: "2";
-}
 .icon-playback-play:before {
   content: "3";
 }
 .icon-camera:before {
   content: "4";
-}
-.icon-handshake:before {
-  content: "c";
 }
 .icon-thumbs-up:before {
   content: "5";
@@ -262,4 +250,10 @@
 }
 .icon-check-1:before {
   content: "-";
+}
+.icon-x:before {
+  content: ".";
+}
+.icon-star:before {
+  content: "/";
 }
