@@ -34,7 +34,7 @@ img.ng-thumb {
 }
 
 .ng-gallery-content > a.close-popup {
-  font-size: 42px;
+  font-size: 25px;
   float: right;
   color: #fff;
   text-decoration: none;
@@ -48,7 +48,7 @@ img.ng-thumb {
 .ng-gallery-content > a.nav-left, .ng-gallery-content > a.nav-right {
   color: #fff;
   text-decoration: none;
-  font-size: 60px;
+  font-size: 30px;
   cursor: pointer;
   outline: none;
 }

@@ -418,6 +418,33 @@ app.config(function($stateProvider) {
 		});
 	}
 
+
+	function FetchGuestList(eventId){
+		//this.Query = '/' + eventId + '?fields=attending.summary(true){name,id,picture}';
+		this.Query = '/' + eventId + '?fields=attending.summary(true){name,id,picture}, maybe.summary(true){id}';
+		this.CallBackFunction = function(ImageArray){ console.log('do nothing'); };
+		this.HandleResponse = function(response){
+		     this.CallBackFunction(response);
+		};
+    }	
+
+	function FBGetEvenGuestList(){
+	
+	  var eventId = "1655378821372445";
+	  
+	  var fetchGuestList = new FetchGuestList(eventId);
+	  fetchGuestList.CallBackFunction = function(response){
+		console.log('Guest Details:' + JSON.stringify(response));
+		
+		$(".no-of-likes b").html(response.attending.summary.count+response.maybe.summary.count);
+		
+		
+	  };
+	  
+	  FBApiGetCall(_AccessToken, fetchGuestList);
+	}
+
+
 /* EOC: FB Gallery */
 
 app.controller('EmailController',['$scope','$http',function EmailController($scope,$http){
@@ -573,11 +600,12 @@ app.controller('AppController', ['$scope','$rootScope','$document','$timeout','$
 			});
 		
 		
-			angular.element(document.getElementById('rt')).scope().createGallery(imgArray);
+			angular.element(document.getElementById('body')).scope().createGallery(imgArray);
 		};
 		FBApiGetCall(_AccessToken, fbPhotoreqRes);
 		
-		displayFBLikes();
+		FBGetEvenGuestList();
+		//displayFBLikes();
 	};
 	
 	$rootScope.mapHeight=37;
